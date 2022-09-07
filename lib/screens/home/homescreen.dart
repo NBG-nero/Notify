@@ -6,6 +6,7 @@ import 'package:notify/widgets/widgets.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../models/models.dart';
+import '../../routes/router.gr.dart';
 import '../../utilities/constants/constants.dart';
 
 class Homescreen extends StatefulWidget {
@@ -37,12 +38,15 @@ class _HomescreenState extends State<Homescreen> {
               itemCount: model.notes.length,
               itemBuilder: (context, index) {
                 Note note = model.notes[index];
-                return NotesCard(note: note);
+                return NotesCard(
+                  note: note,
+                  onTap: () {},
+                );
               },
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                // AutoRouter.of(context).push()
+                AutoRouter.of(context).push(AddNotescreen(note: model.note));
               },
               backgroundColor: Colors.white,
               child: Icon(Icons.add, size: 30.h, color: NColors.primaryColor),
