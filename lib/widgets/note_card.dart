@@ -21,49 +21,50 @@ class _NotesCardState extends State<NotesCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: InkWell(
-        onTap: widget.onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
         child: Material(
-          elevation: 10,
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            padding: const EdgeInsets.all(10),
-            height: 100.h,
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(20)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      widget.note.title ?? "New Note",
-                      style: TextStyle(
-                          fontSize: 20.sp, fontWeight: FontWeight.bold),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        const SizedBox(),
-                        InkWell(
-                          child: Icon(Icons.clear, size: 25.sp),
-                          onTap: () {
-                            // notesProvider.delNote(note.id!);
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  widget.note.desc ?? "Description",
-                  style: TextStyle(fontSize: 15.sp),
-                ),
-              ],
+          elevation: 30,
+          child: InkWell(
+            onTap: widget.onTap,
+            child: Container(
+              margin: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(10),
+              height: 100.h,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        widget.note.title ?? "New Note",
+                        style: TextStyle(
+                            fontSize: 20.sp, fontWeight: FontWeight.bold),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          const SizedBox(),
+                          InkWell(
+                            child: Icon(Icons.clear, size: 25.sp),
+                            onTap: () {
+                              // notesProvider.delNote(note.id!);
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Text(
+                    widget.note.desc ?? "Description",
+                    style: TextStyle(fontSize: 17.sp),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
