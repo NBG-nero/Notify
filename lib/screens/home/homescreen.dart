@@ -41,6 +41,9 @@ class _HomescreenState extends State<Homescreen> {
                 return NotesCard(
                   note: note,
                   onTap: () {},
+                  onDTap: () {
+                    model.delNote(note.id!);
+                  },
                 );
               },
             ),

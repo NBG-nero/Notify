@@ -1,4 +1,6 @@
+
 import 'package:hive_flutter/hive_flutter.dart';
+
 import 'package:stacked/stacked.dart';
 import 'package:uuid/uuid.dart';
 
@@ -23,4 +25,6 @@ class AddNoteViewModel extends BaseViewModel {
     return note.id;
   }
 
+
+  
 }

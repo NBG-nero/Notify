@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:stacked/stacked.dart';
@@ -18,5 +20,14 @@ class HomescreenViewModel extends BaseViewModel {
 
   HomescreenViewModel() {
     AddNoteViewModel().addNote(title: 'New Note', desc: 'Description');
+  }
+  delNote(String id) async {
+    log('method tapped');
+    var hiveBox = Hive.box<Note>(noteBox);
+    await hiveBox.delete(id);
+    log(id);
+    getNotes();
+
+    notifyListeners();
   }
 }

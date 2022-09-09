@@ -6,10 +6,12 @@ import '../models/models.dart';
 class NotesCard extends StatefulWidget {
   final Note note;
   final GestureTapCallback? onTap;
+  final GestureTapCallback? onDTap;
   const NotesCard({
     Key? key,
     required this.note,
     this.onTap,
+    this.onDTap,
   }) : super(key: key);
 
   @override
@@ -47,10 +49,8 @@ class _NotesCardState extends State<NotesCard> {
                         children: [
                           const SizedBox(),
                           InkWell(
+                            onTap: widget.onDTap,
                             child: Icon(Icons.clear, size: 25.sp),
-                            onTap: () {
-                              // notesProvider.delNote(note.id!);
-                            },
                           ),
                         ],
                       ),
