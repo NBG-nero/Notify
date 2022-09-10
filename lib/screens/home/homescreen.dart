@@ -38,9 +38,16 @@ class _HomescreenState extends State<Homescreen> {
               itemCount: model.notes.length,
               itemBuilder: (context, index) {
                 Note note = model.notes[index];
+                // model.sortById;
+                // model.notes.sort(
+                //     ((a, b) => b.id!.compareTo(a.id!)));
                 return NotesCard(
                   note: note,
-                  onTap: () {},
+                  onTap: () {
+                    // AutoRouter.of(context)
+                    //     .push(AddNotescreen(note: model.note));
+                    // model.editNote();
+                  },
                   onDTap: () {
                     model.delNote(note.id!);
                   },

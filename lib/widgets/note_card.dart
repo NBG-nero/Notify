@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,37 +35,45 @@ class _NotesCardState extends State<NotesCard> {
               margin: const EdgeInsets.all(8),
               padding: const EdgeInsets.all(10),
               height: 100.h,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.note.title ?? "New Note",
-                        style: TextStyle(
-                            fontSize: 20.sp, fontWeight: FontWeight.bold),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const SizedBox(),
-                          InkWell(
-                            onTap: widget.onDTap,
-                            child: Icon(Icons.clear, size: 25.sp),
+              width: MediaQuery.of(context).size.width,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width *0.8,
+                          child: Text(
+                            widget.note.title ?? "New Note",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 20.sp, fontWeight: FontWeight.bold),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Text(
-                    widget.note.desc ?? "Description",
-                    style: TextStyle(fontSize: 17.sp),
-                  ),
-                ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const SizedBox(),
+                            InkWell(
+                              onTap: widget.onDTap,
+                              child: Icon(Icons.clear, size: 25.sp),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    Text(
+                      widget.note.desc ?? "Description",
+                      // overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 17.sp),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

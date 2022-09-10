@@ -90,7 +90,7 @@ class _AddNotescreenState extends State<AddNotescreen> {
                 onPressed: () {
                   model.addNote(title: titleCtrl.text, desc: descCtrl.text);
 
-                  AutoRouter.of(context).push(const Homescreen());
+                  AutoRouter.of(context).pushAndPopUntil(const Homescreen(), predicate: (route) => false);
                 },
                 backgroundColor: Colors.white54,
                 child: Icon(Icons.add, size: 30.h, color: Colors.blue.shade900),
