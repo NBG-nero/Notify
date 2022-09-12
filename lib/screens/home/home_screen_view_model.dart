@@ -33,16 +33,5 @@ class HomescreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  // editNote({String? id, String? title, String? desc, bool? complete}) async {
-  //   var hiveBox = Hive.box<Note>(noteBox);
-  //   hiveBox.get(note);
-  //   editNote(
-  //     id: note?.id,
-  //     title: note?.title,
-  //     desc: note?.desc,
-  //     complete: note?.complete = false,
-  //   );
-  //   log(id!);
-  //   return note?.id;
-  // }
+ 
 }

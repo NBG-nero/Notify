@@ -34,6 +34,16 @@ class _HomescreenState extends State<Homescreen> {
               elevation: 0,
               backgroundColor: Colors.transparent,
             ),
+            drawer: Drawer(
+                child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                DrawerHeader(
+                  decoration: BoxDecoration(color: NColors.secondaryColor),
+                  child: Text("User Settings"),
+                )
+              ],
+            )),
             body: ListView.builder(
               itemCount: model.notes.length,
               itemBuilder: (context, index) {
