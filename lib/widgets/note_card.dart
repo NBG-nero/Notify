@@ -51,7 +51,7 @@ class _NotesCardState extends State<NotesCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.7,
@@ -63,16 +63,7 @@ class _NotesCardState extends State<NotesCard> {
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  const SizedBox(),
-                                  InkWell(
-                                    onTap: widget.onDTap,
-                                    child: Icon(Icons.clear, size: 25.sp),
-                                  ),
-                                ],
-                              ),
+                            
                             ],
                           ),
                           SizedBox(

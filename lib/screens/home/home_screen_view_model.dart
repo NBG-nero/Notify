@@ -20,9 +20,7 @@ class HomescreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  // HomescreenViewModel() {
-  //   AddNoteViewModel().addNote(title: 'New Note', desc: 'Description');
-  // }
+ 
   delNote(String id) async {
     log('method tapped');
     var hiveBox = Hive.box<Note>(noteBox);

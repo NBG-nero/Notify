@@ -7,6 +7,7 @@ import 'package:stacked/stacked.dart';
 import '../../models/models.dart';
 import '../../routes/router.gr.dart';
 import '../../utilities/constants/constants.dart';
+import '../../widgets/widgets.dart';
 
 class AddNotescreen extends StatefulWidget {
   final Note? note;
@@ -34,57 +35,59 @@ class _AddNotescreenState extends State<AddNotescreen> {
         },
         builder: (context, model, child) {
           return Scaffold(
-              backgroundColor: NColors.secondaryColor,
               appBar: AppBar(
-                title: Text('Add Note', 
-                 style: TextStyle(fontSize: 24.sp),
-                ),
-                centerTitle: true,
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-              ),
-              body: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Form(
-                  key: formKey,
+                  title: Text(
+                    'Add Note',
+                    style: TextStyle(fontSize: 24.sp),
+                  ),
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(40),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                          onTap: AutoRouter.of(context).pop,
+                          child: Icon(Icons.arrow_back_ios_new_rounded,
+                              size: 25.sp)),
+                    ),
+                  ),
+                  centerTitle: true,
+                  elevation: 10,
+                  backgroundColor: NColors.primaryColor.withOpacity(0.8)),
+              body: SingleChildScrollView(
+                child: Container(
+                  height: MediaQuery.of(context).size.height,
+                  color: NColors.tertiaryolor,
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: ListView(children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Enter Title',
-                          hintStyle: TextStyle(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Form(
+                      key: formKey,
+                      child: ListView(children: [
+                        LTextField(
+                            labelText: 'Title',
+                            hintText: 'enter title',
+                            maxlines: 1,
+                            maxlength: 500,
+                            style: TextStyle(
                               fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white54),
-                        ),
-                        style: TextStyle(
-                          fontSize: 22.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        maxLines: 3,
-                        controller: titleCtrl,
-                      ),
-                      SizedBox(height: 10.h),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Description',
-                          hintStyle: TextStyle(
+                            ),
+                            controller: titleCtrl,
+                            obscureText: false,
+                            isMandatory: false),
+                        SizedBox(height: 10.h),
+                        LTextField(
+                            labelText: 'Note',
+                            hintText: 'enter note',
+                            maxlines: 10,
+                            maxlength: 2000,
+                            style: TextStyle(
                               fontSize: 18.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white54),
-                        ),
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          color: Colors.white,
-                        ),
-                        maxLines: 1000,
-                        controller: descCtrl,
-                      )
-                    ]),
+                            ),
+                            controller: descCtrl,
+                            obscureText: false,
+                            isMandatory: false),
+                      ]),
+                    ),
                   ),
                 ),
               ),
@@ -92,10 +95,11 @@ class _AddNotescreenState extends State<AddNotescreen> {
                 onPressed: () {
                   model.addNote(title: titleCtrl.text, desc: descCtrl.text);
 
-                  AutoRouter.of(context).pushAndPopUntil(const Homescreen(), predicate: (route) => false);
+                  AutoRouter.of(context).pushAndPopUntil(const Homescreen(),
+                      predicate: (route) => false);
                 },
-                backgroundColor: Colors.white54,
-                child: Icon(Icons.add, size: 30.h, color: Colors.blue.shade900),
+                backgroundColor: Colors.white,
+                child: Icon(Icons.add, size: 35.h, color: NColors.primaryColor),
               ));
         });
   }

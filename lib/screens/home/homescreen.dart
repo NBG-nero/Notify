@@ -61,9 +61,7 @@ class _HomescreenState extends State<Homescreen> {
                         model.delNote(note.id!);
                       },
                       onVTap: () {
-                        AutoRouter.of(context)
-                            .push(ViewNotescreen(note: model.note));
-                        model.getAnote(note.id!);
+                        AutoRouter.of(context).push(ViewNotescreen(note: note));
                       },
                     );
                   },
@@ -74,8 +72,8 @@ class _HomescreenState extends State<Homescreen> {
               onPressed: () {
                 AutoRouter.of(context).push(AddNotescreen(note: model.note));
               },
-              backgroundColor: Colors.white,
-              child: Icon(Icons.add, size: 30.h, color: NColors.primaryColor),
+              backgroundColor: NColors.primaryColor,
+              child: Icon(Icons.add, size: 30.h, color: Colors.white),
             ),
           );
         });

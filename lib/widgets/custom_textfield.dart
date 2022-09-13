@@ -18,6 +18,9 @@ class LTextField extends StatefulWidget {
   final bool isMandatory;
   final Widget? prefix;
   final AutovalidateMode? autovalidateMode;
+  final TextStyle? style;
+  final int? maxlength;
+  final bool readOnly;
   const LTextField({
     Key? key,
     this.hintText,
@@ -31,7 +34,10 @@ class LTextField extends StatefulWidget {
     this.maxlines,
     required this.isMandatory,
     this.prefix,
-     this.autovalidateMode,
+    this.autovalidateMode,
+    this.style,
+    this.maxlength,
+    this.readOnly=false,
   }) : super(key: key);
 
   @override
@@ -71,15 +77,17 @@ class _LTextFieldState extends State<LTextField> {
           height: 10.h,
         ),
         TextFormField(
+          readOnly:widget.readOnly,
           autovalidateMode: widget.autovalidateMode,
           maxLines: widget.maxlines ?? 1,
+          maxLength:widget.maxlength ?? 1000,
           obscureText: widget.obscureText,
           controller: widget.controller,
           validator: (val) => widget.validator!(val!),
+          style: widget.style,
           decoration: InputDecoration(
             // labelStyle: const TextStyle(color: Colors.black),
-            hintStyle:
-                textTheme.button?.copyWith(color: Colors.grey.shade400),
+            hintStyle: textTheme.button?.copyWith(color: Colors.grey.shade400),
             // const TextStyle(fontSize: 14.0, color: Colors.black26),
             contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             // labelText: widget.labelText,
