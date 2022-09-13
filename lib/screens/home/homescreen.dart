@@ -62,7 +62,7 @@ class _HomescreenState extends State<Homescreen> {
                       },
                       onVTap: () {
                         AutoRouter.of(context)
-                            .push(AddNotescreen(note: model.note));
+                            .push(ViewNotescreen(note: model.note));
                         model.getAnote(note.id!);
                       },
                     );

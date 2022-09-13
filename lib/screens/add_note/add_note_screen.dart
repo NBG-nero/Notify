@@ -36,7 +36,9 @@ class _AddNotescreenState extends State<AddNotescreen> {
           return Scaffold(
               backgroundColor: NColors.secondaryColor,
               appBar: AppBar(
-                title: Text('Add Note'),
+                title: Text('Add Note', 
+                 style: TextStyle(fontSize: 24.sp),
+                ),
                 centerTitle: true,
                 elevation: 0,
                 backgroundColor: Colors.transparent,
