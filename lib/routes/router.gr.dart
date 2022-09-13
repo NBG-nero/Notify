@@ -34,13 +34,21 @@ class AppRouter extends _i2.RootStackRouter {
       return _i2.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i1.AddNotescreen(key: args.key, note: args.note));
+    },
+    ViewNotescreen.name: (routeData) {
+      final args = routeData.argsAs<ViewNotescreenArgs>(
+          orElse: () => const ViewNotescreenArgs());
+      return _i2.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: _i1.ViewNotescreen(key: args.key, note: args.note));
     }
   };
 
   @override
   List<_i2.RouteConfig> get routes => [
         _i2.RouteConfig(Homescreen.name, path: '/'),
-        _i2.RouteConfig(AddNotescreen.name, path: '/add-notescreen')
+        _i2.RouteConfig(AddNotescreen.name, path: '/add-notescreen'),
+        _i2.RouteConfig(ViewNotescreen.name, path: '/view-notescreen')
       ];
 }
 
@@ -73,5 +81,29 @@ class AddNotescreenArgs {
   @override
   String toString() {
     return 'AddNotescreenArgs{key: $key, note: $note}';
+  }
+}
+
+/// generated route for
+/// [_i1.ViewNotescreen]
+class ViewNotescreen extends _i2.PageRouteInfo<ViewNotescreenArgs> {
+  ViewNotescreen({_i4.Key? key, _i5.Note? note})
+      : super(ViewNotescreen.name,
+            path: '/view-notescreen',
+            args: ViewNotescreenArgs(key: key, note: note));
+
+  static const String name = 'ViewNotescreen';
+}
+
+class ViewNotescreenArgs {
+  const ViewNotescreenArgs({this.key, this.note});
+
+  final _i4.Key? key;
+
+  final _i5.Note? note;
+
+  @override
+  String toString() {
+    return 'ViewNotescreenArgs{key: $key, note: $note}';
   }
 }

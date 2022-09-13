@@ -27,42 +27,48 @@ class _HomescreenState extends State<Homescreen> {
         },
         builder: (context, model, child) {
           return Scaffold(
-            backgroundColor: NColors.primaryColor,
             appBar: AppBar(
-              title: const Text('Notify'),
+              title: Text(
+                'Notify',
+                style: TextStyle(fontSize: 24.sp),
+              ),
               centerTitle: true,
-              elevation: 0,
-              backgroundColor: Colors.transparent,
+              elevation: 10,
+              backgroundColor: NColors.primaryColor,
             ),
-            drawer: Drawer(
-                child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                DrawerHeader(
-                  decoration: BoxDecoration(color: NColors.secondaryColor),
-                  child: Text("User Settings"),
-                )
-              ],
-            )),
-            body: ListView.builder(
-              itemCount: model.notes.length,
-              itemBuilder: (context, index) {
-                Note note = model.notes[index];
-                // model.sortById;
-                // model.notes.sort(
-                //     ((a, b) => b.id!.compareTo(a.id!)));
-                return NotesCard(
-                  note: note,
-                  onTap: () {
-                    // AutoRouter.of(context)
-                    //     .push(AddNotescreen(note: model.note));
-                    // model.editNote();
+            body: Container(
+              height: MediaQuery.of(context).size.height,
+              color: NColors.tertiaryolor,
+              child: SingleChildScrollView(
+                child: ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: model.notes.length,
+                  itemBuilder: (context, index) {
+                    Note note = model.notes[index];
+                    // model.sortById;
+                    // model.notes.sort(
+                    //     ((a, b) => b.id!.compareTo(a.id!)));
+                    return NotesCard(
+                      note: note,
+                      onTap: () {
+                        // AutoRouter.of(context).pop();
+                        // AutoRouter.of(context)
+                        //     .push(AddNotescreen(note: model.note));
+                        // model.editNote();
+                      },
+                      onDTap: () {
+                        model.delNote(note.id!);
+                      },
+                      onVTap: () {
+                        AutoRouter.of(context)
+                            .push(AddNotescreen(note: model.note));
+                        model.getAnote(note.id!);
+                      },
+                    );
                   },
-                  onDTap: () {
-                    model.delNote(note.id!);
-                  },
-                );
-              },
+                ),
+              ),
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {

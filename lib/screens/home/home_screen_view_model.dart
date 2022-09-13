@@ -33,5 +33,10 @@ class HomescreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
- 
+  getAnote(String id) {
+    var hiveBox = Hive.box<Note>(noteBox);
+    note = hiveBox.get(id);
+    log(id);
+    return note;
+  }
 }

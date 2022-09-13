@@ -7,6 +7,7 @@ import '../screens/screens.dart';
   routes: <AutoRoute>[
     AutoRoute(page: Homescreen, initial: true),
     AutoRoute(page: AddNotescreen),
+    AutoRoute(page: ViewNotescreen),
   ],
 )
 class $AppRouter {}
