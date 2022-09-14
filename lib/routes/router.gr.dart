@@ -41,6 +41,13 @@ class AppRouter extends _i2.RootStackRouter {
       return _i2.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i1.ViewNotescreen(key: args.key, note: args.note));
+    },
+    EditNotescreen.name: (routeData) {
+      final args = routeData.argsAs<EditNotescreenArgs>(
+          orElse: () => const EditNotescreenArgs());
+      return _i2.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: _i1.EditNotescreen(key: args.key, note: args.note));
     }
   };
 
@@ -48,7 +55,8 @@ class AppRouter extends _i2.RootStackRouter {
   List<_i2.RouteConfig> get routes => [
         _i2.RouteConfig(Homescreen.name, path: '/'),
         _i2.RouteConfig(AddNotescreen.name, path: '/add-notescreen'),
-        _i2.RouteConfig(ViewNotescreen.name, path: '/view-notescreen')
+        _i2.RouteConfig(ViewNotescreen.name, path: '/view-notescreen'),
+        _i2.RouteConfig(EditNotescreen.name, path: '/edit-notescreen')
       ];
 }
 
@@ -105,5 +113,29 @@ class ViewNotescreenArgs {
   @override
   String toString() {
     return 'ViewNotescreenArgs{key: $key, note: $note}';
+  }
+}
+
+/// generated route for
+/// [_i1.EditNotescreen]
+class EditNotescreen extends _i2.PageRouteInfo<EditNotescreenArgs> {
+  EditNotescreen({_i4.Key? key, _i5.Note? note})
+      : super(EditNotescreen.name,
+            path: '/edit-notescreen',
+            args: EditNotescreenArgs(key: key, note: note));
+
+  static const String name = 'EditNotescreen';
+}
+
+class EditNotescreenArgs {
+  const EditNotescreenArgs({this.key, this.note});
+
+  final _i4.Key? key;
+
+  final _i5.Note? note;
+
+  @override
+  String toString() {
+    return 'EditNotescreenArgs{key: $key, note: $note}';
   }
 }
