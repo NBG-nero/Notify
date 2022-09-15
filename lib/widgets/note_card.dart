@@ -12,7 +12,6 @@ class NotesCard extends StatefulWidget {
   final GestureTapCallback? onETap;
   final GestureTapCallback? onVTap;
 
-
   const NotesCard({
     Key? key,
     required this.note,
@@ -35,77 +34,77 @@ class _NotesCardState extends State<NotesCard> {
         borderRadius: BorderRadius.circular(20),
         child: Material(
           elevation: 30,
-          child: InkWell(
-            onTap: widget.onTap,
-            child: Container(
-              margin: const EdgeInsets.all(8),
-              padding: const EdgeInsets.all(10),
-              height: 178.h,
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                children: [
-                  Container(
-                    height: 90.h,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.7,
-                                child: Text(
-                                  widget.note.title ?? "New Note",
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontSize: 20.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.75,
-                            child: Text(
-                              widget.note.desc ?? "Description",
-                              // overflow: TextOverflow.ellipsis,
-                              style: TextStyle(fontSize: 17.sp),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 8.h),
-                  Divider(
-                    color: Colors.grey.shade300,
-                    thickness: 2,
-                  ),
-                  SizedBox(height:5.h),
-                  Padding(
-                    padding:  EdgeInsets.only(left:40.w,right:40.w,),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Container(
+            margin: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(10),
+            height: 178.h,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              children: [
+                Container(
+                  height: 90.h,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        InkWell( 
-                          onTap:widget.onVTap,
-                          child: Icon(Icons.visibility_outlined, size: 22.sp)),
-                        InkWell(
-                          onTap: widget.onETap,
-                          child: Icon(Icons.edit, size: 22.sp)),
-                        InkWell(
-                          onTap: widget.onDTap,
-                          child: Icon(Icons.delete, size: 22.sp)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.7,
+                              child: Text(
+                                widget.note.title ?? "New Note",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.75,
+                          child: Text(
+                            widget.note.desc ?? "Description",
+                            // overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 17.sp),
+                          ),
+                        ),
                       ],
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                Divider(
+                  color: Colors.grey.shade300,
+                  thickness: 2,
+                ),
+                SizedBox(height: 5.h),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 40.w,
+                    right: 40.w,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                          onTap: widget.onVTap,
+                          child: Icon(Icons.visibility_outlined,
+                              size: 22.sp)),
+                      InkWell(
+                          onTap: widget.onETap,
+                          child: Icon(Icons.edit, size: 22.sp)),
+                      InkWell(
+                          onTap: widget.onDTap,
+                          child: Icon(Icons.delete, size: 22.sp)),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         ),

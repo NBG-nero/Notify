@@ -22,6 +22,7 @@ class AddNoteViewModel extends BaseViewModel {
     Note note = Note(title: title, desc: desc, complete: false, id: uuid.v4());
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(note.id, note);
+    
     return note.id;
   }
 
