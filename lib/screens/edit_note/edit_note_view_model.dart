@@ -15,6 +15,9 @@ class EditNoteViewModel extends BaseViewModel {
     hiveBox.put(note.id, note);
 
   }
+updateNote(String? id, String? title, String? desc) {
+  Note updateNote = Note(id:id, title:title, desc: desc);
+}
 
   
 
