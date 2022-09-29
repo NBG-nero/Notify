@@ -90,8 +90,9 @@ class _EditNotescreenState extends State<EditNotescreen> {
                           SizedBox(height: 30.h),
                           LButton(
                             onPressed: () {
-                          model.updateNote(note!id, titleCtrl.text, descCtrl.text);
-                              AutoRouter.of(context).push( const Homescreen());
+                              model.updateNote(widget.note!.id, titleCtrl.text,
+                                  descCtrl.text);
+                              AutoRouter.of(context).push(const Homescreen());
                             },
                             color: NColors.primaryColor,
                             buttontext: 'Save',

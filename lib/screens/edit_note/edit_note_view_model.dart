@@ -1,3 +1,5 @@
+
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:stacked/stacked.dart';
 
@@ -16,7 +18,7 @@ class EditNoteViewModel extends BaseViewModel {
     Note updateNote = Note(id: id, title: title, desc: desc);
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(updateNote.id, updateNote);
-
+    // log(id!);
     return updateNote.id;
   }
 }

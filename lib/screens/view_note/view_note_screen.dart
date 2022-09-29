@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notify/screens/view_note/view_note_view_model.dart';
-import 'package:notify/widgets/custom_textfield.dart';
+// import 'package:notify/widgets/custom_textfield.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../models/models.dart';
@@ -24,7 +25,6 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
 
   TextEditingController titleCtrl = TextEditingController();
   TextEditingController descCtrl = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -64,32 +64,91 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          LTextField(
-                              readOnly: true,
-                              labelText: 'Title',
-                              hintText: 'enter title',
-                              maxlines: 1,
-                              maxlength: 500,
-                              style: TextStyle(
-                                fontSize: 22.sp,
-                                fontWeight: FontWeight.bold,
+                          TextFormField(
+                            readOnly: true,
+                            decoration:const  InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  // style: BorderStyle.solid
+                                ),
                               ),
-                              controller: titleCtrl,
-                              obscureText: false,
-                              isMandatory: false),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  // style: BorderStyle.solid
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  // style: BorderStyle.solid
+                                ),
+                              ),
+                            ),
+                            maxLines: 2,
+                      
+                            maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
+                            style: TextStyle(
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            controller: titleCtrl,
+                          ),
+                          // LTextField(
+                          //     readOnly: true,
+                          //     labelText: 'Title',
+                          //     hintText: 'enter title',
+                          //     maxlines: 1,
+                          //     maxlength: 500,
+                          //     style: TextStyle(
+                          //       fontSize: 22.sp,
+                          //       fontWeight: FontWeight.bold,
+                          //     ),
+                          //     controller: titleCtrl,
+                          //     obscureText: false,
+                          //     isMandatory: false),
                           SizedBox(height: 10.h),
-                          LTextField(
-                              readOnly: true,
-                              labelText: 'Note',
-                              hintText: 'enter note',
-                              maxlines: 10,
-                              maxlength: 2000,
-                              style: TextStyle(
+                           TextFormField(
+                            readOnly: true,
+                            decoration:const  InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  // style: BorderStyle.solid
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  // style: BorderStyle.solid
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  // style: BorderStyle.solid
+                                ),
+                              ),
+                            ),
+                            maxLines: 30,
+                            style: TextStyle(
                                 fontSize: 18.sp,
                               ),
-                              controller: descCtrl,
-                              obscureText: false,
-                              isMandatory: false)
+                            controller: descCtrl,
+                          ),
+                          // LTextField(
+                          //     readOnly: true,
+                          //     labelText: 'Note',
+                          //     hintText: 'enter note',
+                          //     maxlines: 10,
+                          //     maxlength: 2000,
+                          //     style: TextStyle(
+                          //       fontSize: 18.sp,
+                          //     ),
+                          //     controller: descCtrl,
+                          //     obscureText: false,
+                          //     isMandatory: false)
                         ],
                       ),
                     ),
