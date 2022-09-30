@@ -92,7 +92,10 @@ class _EditNotescreenState extends State<EditNotescreen> {
                             onPressed: () {
                               model.updateNote(widget.note!.id, titleCtrl.text,
                                   descCtrl.text);
-                              AutoRouter.of(context).push(const Homescreen());
+                           
+                              AutoRouter.of(context).pushAndPopUntil(
+                                  const Homescreen(),
+                                  predicate: (route) => false);
                             },
                             color: NColors.primaryColor,
                             buttontext: 'Save',

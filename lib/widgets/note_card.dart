@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
+
+import 'package:notify/utilities/constants/constants.dart';
 
 import '../models/models.dart';
 
@@ -28,6 +31,9 @@ class NotesCard extends StatefulWidget {
 class _NotesCardState extends State<NotesCard> {
   @override
   Widget build(BuildContext context) {
+    String? formattedDate =
+        DateFormat.yMd().format(widget.note.dateCreated ?? DateTime.now());
+
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: ClipRRect(
@@ -37,10 +43,22 @@ class _NotesCardState extends State<NotesCard> {
           child: Container(
             margin: const EdgeInsets.all(8),
             padding: const EdgeInsets.all(10),
-            height: 178.h,
+            height: 189.h,
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      formattedDate,
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          color: NColors.primaryColor,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
                 Container(
                   height: 90.h,
                   child: SingleChildScrollView(
@@ -93,8 +111,7 @@ class _NotesCardState extends State<NotesCard> {
                     children: [
                       InkWell(
                           onTap: widget.onVTap,
-                          child: Icon(Icons.visibility_outlined,
-                              size: 22.sp)),
+                          child: Icon(Icons.visibility_outlined, size: 22.sp)),
                       InkWell(
                           onTap: widget.onETap,
                           child: Icon(Icons.edit, size: 22.sp)),

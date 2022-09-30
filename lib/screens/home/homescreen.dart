@@ -57,6 +57,7 @@ class _HomescreenState extends State<Homescreen> {
                         //     .push(AddNotescreen(note: model.note));
                         // model.editNote();
                       },
+                      
                       onDTap: () {
                         model.delNote(note.id!);
                       },

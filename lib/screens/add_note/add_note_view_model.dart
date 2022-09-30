@@ -1,4 +1,3 @@
-
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:stacked/stacked.dart';
@@ -10,6 +9,7 @@ import '../../utilities/constants/constants.dart';
 class AddNoteViewModel extends BaseViewModel {
   var uuid = const Uuid();
   bool? complete = false;
+  DateTime? newDate;
   Note? note;
 
   setComplete(value) {
@@ -19,13 +19,15 @@ class AddNoteViewModel extends BaseViewModel {
   }
 
   String? addNote({required String title, required String desc}) {
-    Note note = Note(title: title, desc: desc, complete: false, id: uuid.v4());
+    Note note = Note(
+      title: title,
+      desc: desc,
+      complete: false,
+      id: uuid.v4(),
+    );
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(note.id, note);
-    
+
     return note.id;
   }
-
-
-  
 }

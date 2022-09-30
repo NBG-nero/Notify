@@ -21,13 +21,15 @@ class NoteAdapter extends TypeAdapter<Note> {
       id: fields[1] as String?,
       desc: fields[2] as String?,
       complete: fields[3] as bool?,
+      dateCreated: fields[4] as DateTime?,
+      updatedDate: fields[5] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Note obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -35,7 +37,11 @@ class NoteAdapter extends TypeAdapter<Note> {
       ..writeByte(2)
       ..write(obj.desc)
       ..writeByte(3)
-      ..write(obj.complete);
+      ..write(obj.complete)
+      ..writeByte(4)
+      ..write(obj.dateCreated)
+      ..writeByte(5)
+      ..write(obj.updatedDate);
   }
 
   @override
@@ -58,6 +64,12 @@ Note _$NoteFromJson(Map<String, dynamic> json) => Note(
       id: json['id'] as String?,
       desc: json['desc'] as String?,
       complete: json['complete'] as bool? ?? false,
+      dateCreated: json['dateCreated'] == null
+          ? null
+          : DateTime.parse(json['dateCreated'] as String),
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
     );
 
 Map<String, dynamic> _$NoteToJson(Note instance) => <String, dynamic>{
@@ -65,4 +77,6 @@ Map<String, dynamic> _$NoteToJson(Note instance) => <String, dynamic>{
       'id': instance.id,
       'desc': instance.desc,
       'complete': instance.complete,
+      'dateCreated': instance.dateCreated?.toIso8601String(),
+      'updatedDate': instance.updatedDate?.toIso8601String(),
     };

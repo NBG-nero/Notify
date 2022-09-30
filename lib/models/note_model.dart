@@ -15,51 +15,26 @@ class Note {
   String? desc;
   @HiveField(3)
   bool? complete;
+  @HiveField(4)
+  DateTime? dateCreated;
+  @HiveField(5)
+  DateTime? updatedDate;
+
   Note({
     this.title,
     this.id,
     this.desc,
     this.complete = false,
+    this.dateCreated,
+    this.updatedDate,
   });
-   factory Note.from(Map<String, dynamic> json) => _$NoteFromJson(json);
+  //  : dateCreated =dateCreated ?? DateTime.now();
+
+  factory Note.from(Map<String, dynamic> json) => _$NoteFromJson(json);
   Map<String, dynamic> toJson() => _$NoteToJson(this);
- 
+
+  @override
+  String toString() {
+    return 'Note(title: $title, id: $id, desc: $desc, complete: $complete, dateCreated: $dateCreated, updatedDate: $updatedDate)';
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
