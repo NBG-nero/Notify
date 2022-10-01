@@ -51,7 +51,9 @@ class _NotesCardState extends State<NotesCard> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      formattedDate,
+                      widget.note.dateCreated == null
+                          ? formattedDate
+                          : DateFormat.yMd().format(widget.note.dateCreated!),
                       style: TextStyle(
                           fontSize: 12.sp,
                           color: NColors.primaryColor,

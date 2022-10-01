@@ -9,7 +9,6 @@ import '../../utilities/constants/constants.dart';
 class AddNoteViewModel extends BaseViewModel {
   var uuid = const Uuid();
   bool? complete = false;
-  DateTime? newDate;
   Note? note;
 
   setComplete(value) {
@@ -24,6 +23,7 @@ class AddNoteViewModel extends BaseViewModel {
       desc: desc,
       complete: false,
       id: uuid.v4(),
+      dateCreated: DateTime.now()
     );
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(note.id, note);
