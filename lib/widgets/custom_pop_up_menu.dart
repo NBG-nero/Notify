@@ -1,0 +1,78 @@
+// ignore_for_file: avoid_print, sized_box_for_whitespace, avoid_unnecessary_containers
+
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../models/models.dart';
+
+class CustomPopupMenu extends StatefulWidget {
+  final Note? note;
+  final GestureTapCallback? onSortbyT;
+  final GestureTapCallback? onSortbyN;
+  final GestureTapCallback? onSortbyD;
+  final GestureTapCallback? onSortbyI;
+  const CustomPopupMenu({
+    Key? key,
+    this.note,
+    this.onSortbyT,
+    this.onSortbyN,
+    this.onSortbyD,
+    this.onSortbyI,
+  }) : super(key: key);
+
+  @override
+  State<CustomPopupMenu> createState() => _CustomPopupMenuState();
+}
+
+class _CustomPopupMenuState extends State<CustomPopupMenu> {
+  @override
+  Widget build(BuildContext context) {
+    // var size = MediaQuery.of(context).size;
+    var textTheme = Theme.of(context).textTheme;
+    return Container(
+        alignment: Alignment.centerRight,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(),
+          child: PopupMenuButton<int>(
+            tooltip: 'Sort Notes',
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            // color: Colors.grey.shade300.withOpacity(0.9),
+            // color: Colors.white.withOpacity(0.95),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                child: const Icon(Icons.menu),
+              ),
+            ),
+            onSelected: (int selectedValue) async {
+              switch (selectedValue) {
+                case 0:
+                  widget.onSortbyT;
+
+                  print('Sort by Title');
+                  break;
+                case 1:
+                  widget.onSortbyN;
+
+                  print('Sort by Note');
+                  break;
+                case 2:
+                  widget.onSortbyD;
+
+                  print('Sort by Date');
+                  break;
+                case 3:
+                  widget.onSortbyI;
+
+                  print('Sort by Id');
+                  break;
+                // case 4:
+ 
