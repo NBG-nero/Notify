@@ -75,4 +75,204 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
                   print('Sort by Id');
                   break;
                 // case 4:
- 
+                //   print('Reported');
+                //   break;
+                // case 5:
+                //   print('Only your friends can see this post');
+                //   break;
+              }
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                height: 20.h,
+                value: 0,
+                child: Column(
+                  children: [
+                    SizedBox(height: 8.h),
+                    Row(
+                      children: [
+                        Align(
+                            alignment: Alignment.topRight,
+                            child: Icon(Icons.bookmark_border, size: 25.h)),
+                        SizedBox(width: 5.w),
+                        Text(
+                          'Sort by Title',
+                          style: textTheme.bodyText2?.copyWith(),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5.h),
+                    const Divider(
+                      indent: 0,
+                      endIndent: 0,
+                      height: 1,
+                    ),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                height: 20.h,
+                value: 1,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Align(
+                            alignment: Alignment.topRight,
+                            child: Icon(Icons.share_outlined, size: 25.h)),
+                        SizedBox(width: 5.w),
+                        Text(
+                          'Sort by Note',
+                          style: textTheme.bodyText2?.copyWith(),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5.h),
+                    const Divider(
+                      indent: 0,
+                      endIndent: 0,
+                      height: 1,
+                    ),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                height: 20.h,
+                value: 2,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Align(
+                            alignment: Alignment.topRight,
+                            child: Icon(Icons.cancel_outlined, size: 25.h)),
+                        const SizedBox(width: 5),
+                        Expanded(
+                          child: Container(
+                            // width: size.width * 0.6,
+                            child: Text(
+                              // 'Unfollow ${widget.post.userName!}',
+                              'Sort by Date',
+                              style: textTheme.bodyText2?.copyWith(),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5.h),
+                    const Divider(
+                      indent: 0,
+                      endIndent: 0,
+                      height: 1,
+                    ),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                height: 20.h,
+                value: 3,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Align(
+                            alignment: Alignment.topRight,
+                            child:
+                                Icon(Icons.volume_mute_outlined, size: 25.h)),
+                        SizedBox(width: 5.w),
+                        Expanded(
+                          child: Container(
+                            // width: size.width * 0.6,
+                            child: Text(
+                              // 'Mute ${widget.post.userName!}',
+                              'Sort by Id',
+                              style: textTheme.bodyText2?.copyWith(),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5.h),
+                    const Divider(
+                      indent: 0,
+                      endIndent: 0,
+                      height: 1,
+                    ),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                  ],
+                ),
+              ),
+              // PopupMenuItem(
+              //   height: 20.h,
+              //   value: 4,
+              //   child: Column(
+              //     children: [
+              //       Row(
+              //         children: [
+              //           Align(
+              //               alignment: Alignment.topRight,
+              //               child: Icon(
+              //                 Icons.warning_amber_outlined,
+              //                 size: 25.h,
+              //               )),
+              //           SizedBox(width: 5.w),
+              //           Text(
+              //             'Report this post',
+              //             style: textTheme.bodyText2?.copyWith(),
+              //           ),
+              //         ],
+              //       ),
+              //       // SizedBox(height: 5.h),
+              //       // const Divider(
+              //       //   indent: 0,
+              //       //   endIndent: 0,
+              //       //   height: 1,
+              //       //   color: Colors.black45,
+              //       // ),
+              //       SizedBox(
+              //         height: 20.h,
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // PopupMenuItem(
+              //   height: 20.h,
+              //   value: 5,
+              //   child: Column(
+              //     children: [
+              //       Row(
+              //         children: [
+              //           const Align(
+              //               alignment: Alignment.topRight,
+              //               child: Icon(Icons.visibility_off_outlined)),
+              //           SizedBox(width: 5.w),
+              //           const Text(
+              //             'Who can see this post',
+              //             overflow: TextOverflow.ellipsis,
+              //           ),
+              //         ],
+              //       ),
+              //       SizedBox(
+              //         height: 20.h,
+              //       ),
+              //     ],
+              //   ),
+              // ),
+            ],
+          ),
+        ));
+  }
+}
