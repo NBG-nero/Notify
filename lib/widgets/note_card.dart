@@ -33,6 +33,8 @@ class _NotesCardState extends State<NotesCard> {
   Widget build(BuildContext context) {
     String? formattedDate =
         DateFormat.yMd().format(widget.note.dateCreated ?? DateTime.now());
+    String? upDatedFormatDate =
+        DateFormat.yMEd().format(widget.note.updatedDate ?? DateTime.now());
 
     return Padding(
       padding: const EdgeInsets.all(10.0),
@@ -51,9 +53,15 @@ class _NotesCardState extends State<NotesCard> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      widget.note.dateCreated == null
-                          ? formattedDate
-                          : DateFormat.yMd().format(widget.note.dateCreated!),
+                      widget.note.isEdited == false
+                          ? (widget.note.dateCreated == null
+                              ? formattedDate
+                              : DateFormat.yMd()
+                                  .format(widget.note.dateCreated!))
+                          : (widget.note.updatedDate == null
+                              ? upDatedFormatDate
+                              : DateFormat.yMEd()
+                                  .format(widget.note.updatedDate!)),
                       style: TextStyle(
                           fontSize: 12.sp,
                           color: NColors.primaryColor,

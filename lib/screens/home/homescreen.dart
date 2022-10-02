@@ -35,6 +35,25 @@ class _HomescreenState extends State<Homescreen> {
               centerTitle: true,
               elevation: 10,
               backgroundColor: NColors.primaryColor,
+              actions: [
+                CustomPopupMenu(
+                  note: model.note,
+                  onSortbyT: () {
+                    model.notes.sort(((a, b) => a.title!.compareTo(b.title!)));
+                    model.getNotes();
+                  },
+                  onSortbyN: () {
+                    model.notes.sort(((a, b) => a.desc!.compareTo(b.desc!)));
+                    model.getNotes();
+                  },
+                  onSortbyD: () {},
+                  onSortbyI: () {
+                    model.sortById;
+                    model.getNotes();
+                    // model.notes.sort(((a, b) => a.id!.compareTo(b.id!)));
+                  },
+                )
+              ],
             ),
             body: Container(
               height: MediaQuery.of(context).size.height,
@@ -47,8 +66,9 @@ class _HomescreenState extends State<Homescreen> {
                   itemBuilder: (context, index) {
                     Note note = model.notes[index];
                     // model.sortById;
-                    model.notes.sort(
-                        ((a, b) => b.id!.compareTo(a.id!)));
+                    model.notes.sort(((a, b) => a.id!.compareTo(b.id!)));
+                    // model.notes.sort(((a, b) => a.title!.compareTo(b.title!)));
+
                     return NotesCard(
                       note: note,
                       onTap: () {
@@ -57,7 +77,6 @@ class _HomescreenState extends State<Homescreen> {
                         //     .push(AddNotescreen(note: model.note));
                         // model.editNote();
                       },
-                      
                       onDTap: () {
                         model.delNote(note.id!);
                       },

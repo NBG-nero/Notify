@@ -19,6 +19,8 @@ class Note {
   DateTime? dateCreated;
   @HiveField(5)
   DateTime? updatedDate;
+  @HiveField(6)
+  bool? isEdited;
 
   Note({
     this.title,
@@ -27,6 +29,7 @@ class Note {
     this.complete = false,
     this.dateCreated,
     this.updatedDate,
+    this.isEdited,
   });
   //  : dateCreated =dateCreated ?? DateTime.now();
 
@@ -35,6 +38,6 @@ class Note {
 
   @override
   String toString() {
-    return 'Note(title: $title, id: $id, desc: $desc, complete: $complete, dateCreated: $dateCreated, updatedDate: $updatedDate)';
+    return 'Note(title: $title, id: $id, desc: $desc, complete: $complete, dateCreated: $dateCreated, updatedDate: $updatedDate, isEdited: $isEdited)';
   }
 }
