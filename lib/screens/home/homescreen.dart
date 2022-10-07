@@ -37,21 +37,16 @@ class _HomescreenState extends State<Homescreen> {
               backgroundColor: NColors.primaryColor,
               actions: [
                 CustomPopupMenu(
-                  note: model.note,
                   onSortbyT: () {
-                    model.notes.sort(((a, b) => a.title!.compareTo(b.title!)));
-                    model.getNotes();
+                    model.sortByTitle();
                   },
                   onSortbyN: () {
-                    model.notes.sort(((a, b) => a.desc!.compareTo(b.desc!)));
-                    model.getNotes();
+                    model.sortByNote();
                   },
-                  onSortbyD: () {},
-                  onSortbyI: () {
-                    model.sortById;
-                    model.getNotes();
-                    // model.notes.sort(((a, b) => a.id!.compareTo(b.id!)));
+                  onSortbyD: () {
+                    model.sortByDate();
                   },
+                  onSortbyI: () {},
                 )
               ],
             ),
@@ -65,9 +60,6 @@ class _HomescreenState extends State<Homescreen> {
                   itemCount: model.notes.length,
                   itemBuilder: (context, index) {
                     Note note = model.notes[index];
-                    // model.sortById;
-                    model.notes.sort(((a, b) => a.id!.compareTo(b.id!)));
-                    // model.notes.sort(((a, b) => a.title!.compareTo(b.title!)));
 
                     return NotesCard(
                       note: note,

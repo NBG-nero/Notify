@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print, sized_box_for_whitespace, avoid_unnecessary_containers
 
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -8,14 +9,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../models/models.dart';
 
 class CustomPopupMenu extends StatefulWidget {
-  final Note? note;
+  
   final GestureTapCallback? onSortbyT;
   final GestureTapCallback? onSortbyN;
   final GestureTapCallback? onSortbyD;
   final GestureTapCallback? onSortbyI;
   const CustomPopupMenu({
     Key? key,
-    this.note,
+ 
     this.onSortbyT,
     this.onSortbyN,
     this.onSortbyD,
@@ -55,24 +56,17 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
             onSelected: (int selectedValue) async {
               switch (selectedValue) {
                 case 0:
-                  widget.onSortbyT;
-
-                  print('Sort by Title');
+                  widget.onSortbyT!();
+                 
                   break;
                 case 1:
-                  widget.onSortbyN;
-
-                  print('Sort by Note');
+                  widget.onSortbyN!();
                   break;
                 case 2:
-                  widget.onSortbyD;
-
-                  print('Sort by Date');
+                  widget.onSortbyD!();
                   break;
                 case 3:
-                  widget.onSortbyI;
-
-                  print('Sort by Id');
+                  widget.onSortbyI!();
                   break;
                 // case 4:
                 //   print('Reported');

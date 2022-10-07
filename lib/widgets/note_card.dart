@@ -32,7 +32,7 @@ class _NotesCardState extends State<NotesCard> {
   @override
   Widget build(BuildContext context) {
     String? formattedDate =
-        DateFormat.yMd().format(widget.note.dateCreated ?? DateTime.now());
+        DateFormat.yMEd().format(widget.note.dateCreated ?? DateTime.now());
     String? upDatedFormatDate =
         DateFormat.yMEd().format(widget.note.updatedDate ?? DateTime.now());
 
@@ -56,11 +56,12 @@ class _NotesCardState extends State<NotesCard> {
                       widget.note.isEdited == false
                           ? (widget.note.dateCreated == null
                               ? formattedDate
-                              : DateFormat.yMd()
+                              : DateFormat.yMEd()
                                   .format(widget.note.dateCreated!))
                           : (widget.note.updatedDate == null
                               ? upDatedFormatDate
                               : DateFormat.yMEd()
+                                  .add_jm()
                                   .format(widget.note.updatedDate!)),
                       style: TextStyle(
                           fontSize: 12.sp,
