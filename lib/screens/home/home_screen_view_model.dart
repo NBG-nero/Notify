@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -46,11 +47,7 @@ class HomescreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  sortByDate() {
-    // date = (Note().dateCreated = Note().updatedDate)!;
-    notes.sort(((a, b) => a.dateCreated!
-        .toIso8601String()
-        .compareTo(b.dateCreated!.toIso8601String())));
-    notifyListeners();
+  sortById() {
+    notes.sort(((a, b) => a.id!.compareTo(b.id!)));
   }
 }
