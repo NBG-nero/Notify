@@ -44,7 +44,7 @@ class _HomescreenState extends State<Homescreen> {
                     model.sortByNote();
                   },
                   onSortbyD: () {
-                    // model.sortByDate();
+                    model.sortByDate();
                   },
                   onSortbyI: () {
                     model.sortById();

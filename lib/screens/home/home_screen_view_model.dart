@@ -11,6 +11,7 @@ import '../../utilities/constants/constants.dart';
 class HomescreenViewModel extends BaseViewModel {
   List<Note> notes = <Note>[];
   Note? note;
+  // Comparator<Note> sortbyId = ((a, b) => a.id!.compareTo(b.id!));
 
   getNotes() {
     var hiveBox = Hive.box<Note>(noteBox);
@@ -47,7 +48,32 @@ class HomescreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  sortByDate() {
+    String? formattedDate =
+        DateFormat.yMEd().format(note?.dateCreated ?? DateTime.now());
+    String? upDatedFormatDate =
+        DateFormat.yMEd().format(note?.updatedDate ?? DateTime.now());
+
+    // note?.altDate == null
+    //     ? (note?.dateCreated == null
+    //         ? formattedDate
+    //         : DateFormat.yMEd().format(note?.dateCreated ?? DateTime.now()))
+    //     : (note?.updatedDate == null
+    //         ? upDatedFormatDate
+    //         : DateFormat.yMEd()
+    //             .add_jm()
+    //             .format(note?.updatedDate ?? DateTime.now()));
+    note?.altDate = formattedDate;
+    formattedDate = upDatedFormatDate;
+
+    ///Null check operator used on a null value
+    notes.sort(((a, b) => a.altDate!.compareTo(b.altDate!)));
+
+    notifyListeners();
+  }
+
   sortById() {
-    notes.sort(((a, b) => a.id!.compareTo(b.id!)));
+    notes.sort(((a, b) => a.id!.toLowerCase().compareTo(b.id!.toLowerCase())));
+    notifyListeners();
   }
 }
