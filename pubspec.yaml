@@ -50,6 +50,7 @@ dependencies:
   stacked: ^3.0.0
   intl: ^0.17.0
   google_fonts: ^3.0.1
+  shared_preferences: 
  
   
   
