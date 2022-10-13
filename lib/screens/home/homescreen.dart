@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notify/providers/theme_notifier.dart';
 import 'package:notify/screens/home/home_screen_view_model.dart';
 import 'package:notify/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../models/models.dart';
@@ -19,7 +22,7 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
-  
+    final theme = Provider.of<ThemeNotifier>(context);
     return ViewModelBuilder<HomescreenViewModel>.reactive(
         viewModelBuilder: () => HomescreenViewModel(),
         onModelReady: (h) {
@@ -28,6 +31,29 @@ class _HomescreenState extends State<Homescreen> {
         },
         builder: (context, model, child) {
           return Scaffold(
+            drawer: Drawer(
+                child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                const DrawerHeader(
+                  child: Text(''),
+                ),
+                ListTile(
+                  trailing: Transform.scale(
+                    scale: 0.6,
+                    child: CupertinoSwitch(
+                      activeColor: NColors.primaryColor,
+                      value: theme.darkTheme,
+                      onChanged: (bool value) {
+                        theme.toggleTheme();
+                      },
+                    ),
+                  ),
+                  title: const Text('Theme'),
+               
+                ),
+              ],
+            )),
             appBar: AppBar(
               title: Text(
                 'Notify',
@@ -55,9 +81,7 @@ class _HomescreenState extends State<Homescreen> {
             ),
             body: Container(
               height: MediaQuery.of(context).size.height,
-              color: 
-              
-               NColors.tertiaryolor ,
+              color: NColors.tertiaryolor,
               child: SingleChildScrollView(
                 child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
