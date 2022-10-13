@@ -19,6 +19,7 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
+  
     return ViewModelBuilder<HomescreenViewModel>.reactive(
         viewModelBuilder: () => HomescreenViewModel(),
         onModelReady: (h) {
@@ -54,7 +55,9 @@ class _HomescreenState extends State<Homescreen> {
             ),
             body: Container(
               height: MediaQuery.of(context).size.height,
-              color: NColors.tertiaryolor,
+              color: 
+              
+               NColors.tertiaryolor ,
               child: SingleChildScrollView(
                 child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
