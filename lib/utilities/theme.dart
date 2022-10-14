@@ -10,7 +10,6 @@ class AppTheme {
     final lightTheme = ThemeData.light();
     return lightTheme.copyWith(
       primaryColor: primaryColor,
-     
       colorScheme:
           ColorScheme.fromSwatch(primarySwatch: NColors.primaryColorswatch),
       appBarTheme: AppBarTheme(
@@ -22,6 +21,7 @@ class AppTheme {
         toolbarTextStyle: GoogleFonts.poppinsTextTheme().bodyText2,
         titleTextStyle: GoogleFonts.poppinsTextTheme().headline6,
       ),
+      // cardTheme: CardTheme(color: NColors.tertiaryolor),
       textTheme: TextTheme(
         headline1: GoogleFonts.poppins(
             fontSize: fontSize + 13,
@@ -64,9 +64,7 @@ class AppTheme {
             color: const Color.fromARGB(255, 0, 0, 0),
             fontWeight: FontWeight.w700),
       ),
-
       errorColor: const Color.fromARGB(255, 237, 81, 70),
-  
       dividerTheme: DividerThemeData(
         color: Colors.grey.shade500,
       ),
@@ -81,13 +79,12 @@ class AppTheme {
   ThemeData darkTheme(Color primaryColor, fontSize) {
     return ThemeData.dark().copyWith(
       primaryColor: primaryColor,
-    
       colorScheme:
           ColorScheme.fromSwatch(primarySwatch: NColors.primaryColorswatch),
       appBarTheme: AppBarTheme(
         color: const Color.fromARGB(255, 11, 66, 87),
         iconTheme: IconThemeData(
-          color: Colors.grey.shade500,
+          color: Colors.grey.shade100,
         ),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         toolbarTextStyle: GoogleFonts.poppinsTextTheme()
@@ -103,7 +100,7 @@ class AppTheme {
             )
             .headline6,
       ),
-
+      // cardTheme: CardTheme(color: Colors.grey[800]),
       textTheme: TextTheme(
         headline1: GoogleFonts.poppins(
             fontSize: fontSize + 13,
@@ -146,15 +143,13 @@ class AppTheme {
             color: Colors.grey[200],
             fontWeight: FontWeight.w700),
       ),
-
       errorColor: const Color.fromARGB(255, 220, 145, 140),
-   
       dividerTheme: const DividerThemeData(
         color: Colors.white60,
       ),
-
       popupMenuTheme: PopupMenuThemeData(
-        color: Colors.grey.shade800.withOpacity(0.95),
+        // color: Colors.grey.shade800.withOpacity(0.95),
+        color: Colors.white.withOpacity(0.95),
       ),
       floatingActionButtonTheme:
           FloatingActionButtonThemeData(backgroundColor: primaryColor),

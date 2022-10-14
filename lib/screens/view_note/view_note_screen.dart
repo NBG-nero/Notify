@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notify/screens/view_note/view_note_view_model.dart';
+import 'package:notify/utilities/theme.dart';
 // import 'package:notify/widgets/custom_textfield.dart';
 import 'package:stacked/stacked.dart';
 
@@ -58,7 +59,9 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
             body: SingleChildScrollView(
               child: Container(
                   height: MediaQuery.of(context).size.height,
-                  color: NColors.tertiaryolor,
+                  color:
+                  
+                   NColors.tertiaryolor,
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: SingleChildScrollView(
@@ -89,7 +92,9 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
                             maxLines: 2,
                       
                             maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
-                            style: TextStyle(
+                            style: 
+                            // Theme.of(context).textTheme.caption?.copyWith(),
+                            TextStyle(
                               fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
                             ),

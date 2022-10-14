@@ -45,7 +45,7 @@ class _NotesCardState extends State<NotesCard> {
           child: Container(
             margin: const EdgeInsets.all(8),
             padding: const EdgeInsets.all(10),
-            height: 189.h,
+            height: 190.h,
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
@@ -63,15 +63,13 @@ class _NotesCardState extends State<NotesCard> {
                               : DateFormat.yMEd()
                                   .add_jm()
                                   .format(widget.note.updatedDate!)),
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          color: NColors.primaryColor,
-                          fontWeight: FontWeight.w700),
+                      style: Theme.of(context).textTheme.button?.copyWith(
+                          fontSize: 12.sp, color: NColors.primaryColor),
                     ),
                   ],
                 ),
                 Container(
-                  height: 90.h,
+                  height: 88.h,
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

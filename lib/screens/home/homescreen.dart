@@ -39,16 +39,16 @@ class _HomescreenState extends State<Homescreen> {
                   child: Text(''),
                 ),
                 ListTile(
-                  trailing: Transform.scale(
-                    scale: 0.6,
-                    child: CupertinoSwitch(
-                      activeColor: NColors.primaryColor,
-                      value: theme.darkTheme,
-                      onChanged: (bool value) {
-                        theme.toggleTheme();
-                      },
-                    ),
-                  ),
+                  // trailing: Transform.scale(
+                  //   scale: 0.6,
+                  //   child: CupertinoSwitch(
+                  //     activeColor: NColors.primaryColor,
+                  //     value: theme.darkTheme,
+                  //     onChanged: (bool value) {
+                  //       theme.toggleTheme();
+                  //     },
+                  //   ),
+                  // ),
                   title: const Text('Theme'),
                
                 ),
