@@ -39,18 +39,41 @@ class _HomescreenState extends State<Homescreen> {
                   child: Text(''),
                 ),
                 ListTile(
-                  // trailing: Transform.scale(
-                  //   scale: 0.6,
-                  //   child: CupertinoSwitch(
-                  //     activeColor: NColors.primaryColor,
-                  //     value: theme.darkTheme,
-                  //     onChanged: (bool value) {
-                  //       theme.toggleTheme();
-                  //     },
-                  //   ),
-                  // ),
+              
+                  trailing: Transform.scale(
+                    scale: 0.6,
+                    child: CupertinoSwitch(
+                      activeColor: NColors.primaryColor,
+                      value: theme.darkTheme,
+                      onChanged: (bool value) {
+                        theme.toggleTheme();
+                      },
+                    ),
+                  ),
                   title: const Text('Theme'),
-               
+                ),
+                Padding(
+                  padding: EdgeInsets.all(20.0.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Sort Notes'),
+                      CustomPopupMenu(
+                        onSortbyT: () {
+                          model.sortByTitle();
+                        },
+                        onSortbyN: () {
+                          model.sortByNote();
+                        },
+                        onSortbyD: () {
+                          model.sortByDate();
+                        },
+                        onSortbyI: () {
+                          model.sortById();
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ],
             )),
@@ -62,22 +85,22 @@ class _HomescreenState extends State<Homescreen> {
               centerTitle: true,
               elevation: 10,
               backgroundColor: NColors.primaryColor,
-              actions: [
-                CustomPopupMenu(
-                  onSortbyT: () {
-                    model.sortByTitle();
-                  },
-                  onSortbyN: () {
-                    model.sortByNote();
-                  },
-                  onSortbyD: () {
-                    model.sortByDate();
-                  },
-                  onSortbyI: () {
-                    model.sortById();
-                  },
-                )
-              ],
+              // actions: [
+              //   CustomPopupMenu(
+              //     onSortbyT: () {
+              //       model.sortByTitle();
+              //     },
+              //     onSortbyN: () {
+              //       model.sortByNote();
+              //     },
+              //     onSortbyD: () {
+              //       model.sortByDate();
+              //     },
+              //     onSortbyI: () {
+              //       model.sortById();
+              //     },
+              //   ),
+              // ],
             ),
             body: Container(
               height: MediaQuery.of(context).size.height,
