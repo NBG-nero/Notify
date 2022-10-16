@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -11,7 +12,11 @@ import '../../utilities/constants/constants.dart';
 class HomescreenViewModel extends BaseViewModel {
   List<Note> notes = <Note>[];
   Note? note;
+  SharedPreferences? prefs;
   // Comparator<Note> sortbyId = ((a, b) => a.id!.compareTo(b.id!));
+  initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+  }
 
   getNotes() {
     var hiveBox = Hive.box<Note>(noteBox);
@@ -67,7 +72,12 @@ class HomescreenViewModel extends BaseViewModel {
     formattedDate = upDatedFormatDate;
 
     ///Null check operator used on a null value
-    notes.sort(((a, b) => a.altDate!.compareTo(b.altDate!)));
+    // notes.sort(((a, b) => a.altDate!.compareTo(b.altDate!)));
+    notes.sort((a, b) {
+      int aDate = DateTime.parse(a.altDate ?? '').microsecondsSinceEpoch;
+      int bDate = DateTime.parse(b.altDate ?? '').microsecondsSinceEpoch;
+      return aDate.compareTo(bDate);
+    });
 
     notifyListeners();
   }

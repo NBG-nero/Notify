@@ -41,7 +41,10 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
             appBar: AppBar(
                 title: Text(
                   'View Note',
-                  style: TextStyle(fontSize: 24.sp),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline2
+                      ?.copyWith(fontSize: 22.sp),
                 ),
                 leading: ClipRRect(
                   borderRadius: BorderRadius.circular(40),
@@ -57,104 +60,103 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
                 elevation: 10,
                 backgroundColor: NColors.secondaryColor),
             body: SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                   height: MediaQuery.of(context).size.height,
-                  color:
-                  
-                   NColors.tertiaryolor,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          TextFormField(
-                            readOnly: true,
-                            decoration:const  InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  // style: BorderStyle.solid
+                  child: Material(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              readOnly: true,
+                              decoration: const InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    // style: BorderStyle.solid
+                                  ),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    // style: BorderStyle.solid
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    // style: BorderStyle.solid
+                                  ),
                                 ),
                               ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  // style: BorderStyle.solid
-                                ),
+                              maxLines: 2,
+                              maxLengthEnforcement: MaxLengthEnforcement
+                                  .truncateAfterCompositionEnds,
+                              style:
+                                  // Theme.of(context).textTheme.caption?.copyWith(),
+                                  TextStyle(
+                                fontSize: 22.sp,
+                                fontWeight: FontWeight.bold,
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  // style: BorderStyle.solid
-                                ),
-                              ),
+                              controller: titleCtrl,
                             ),
-                            maxLines: 2,
-                      
-                            maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
-                            style: 
-                            // Theme.of(context).textTheme.caption?.copyWith(),
-                            TextStyle(
-                              fontSize: 22.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            controller: titleCtrl,
-                          ),
-                          // LTextField(
-                          //     readOnly: true,
-                          //     labelText: 'Title',
-                          //     hintText: 'enter title',
-                          //     maxlines: 1,
-                          //     maxlength: 500,
-                          //     style: TextStyle(
-                          //       fontSize: 22.sp,
-                          //       fontWeight: FontWeight.bold,
-                          //     ),
-                          //     controller: titleCtrl,
-                          //     obscureText: false,
-                          //     isMandatory: false),
-                          SizedBox(height: 10.h),
-                           TextFormField(
-                            readOnly: true,
-                            decoration:const  InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  // style: BorderStyle.solid
+                            // LTextField(
+                            //     readOnly: true,
+                            //     labelText: 'Title',
+                            //     hintText: 'enter title',
+                            //     maxlines: 1,
+                            //     maxlength: 500,
+                            //     style: TextStyle(
+                            //       fontSize: 22.sp,
+                            //       fontWeight: FontWeight.bold,
+                            //     ),
+                            //     controller: titleCtrl,
+                            //     obscureText: false,
+                            //     isMandatory: false),
+                            SizedBox(height: 10.h),
+                            TextFormField(
+                              readOnly: true,
+                              decoration: const InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    // style: BorderStyle.solid
+                                  ),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    // style: BorderStyle.solid
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    // style: BorderStyle.solid
+                                  ),
                                 ),
                               ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  // style: BorderStyle.solid
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  // style: BorderStyle.solid
-                                ),
-                              ),
-                            ),
-                            maxLines: 30,
-                            style: TextStyle(
+                              maxLines: 30,
+                              style: TextStyle(
                                 fontSize: 18.sp,
                               ),
-                            controller: descCtrl,
-                          ),
-                          // LTextField(
-                          //     readOnly: true,
-                          //     labelText: 'Note',
-                          //     hintText: 'enter note',
-                          //     maxlines: 10,
-                          //     maxlength: 2000,
-                          //     style: TextStyle(
-                          //       fontSize: 18.sp,
-                          //     ),
-                          //     controller: descCtrl,
-                          //     obscureText: false,
-                          //     isMandatory: false)
-                        ],
+                              controller: descCtrl,
+                            ),
+                            // LTextField(
+                            //     readOnly: true,
+                            //     labelText: 'Note',
+                            //     hintText: 'enter note',
+                            //     maxlines: 10,
+                            //     maxlength: 2000,
+                            //     style: TextStyle(
+                            //       fontSize: 18.sp,
+                            //     ),
+                            //     controller: descCtrl,
+                            //     obscureText: false,
+                            //     isMandatory: false)
+                          ],
+                        ),
                       ),
                     ),
                   )),

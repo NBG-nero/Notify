@@ -71,6 +71,7 @@ class AppTheme {
       popupMenuTheme: PopupMenuThemeData(
         color: Colors.white.withOpacity(0.95),
       ),
+   
       floatingActionButtonTheme:
           FloatingActionButtonThemeData(backgroundColor: primaryColor),
     );
@@ -149,7 +150,6 @@ class AppTheme {
       ),
       popupMenuTheme: PopupMenuThemeData(
         color: Colors.grey.shade800.withOpacity(0.95),
-      
       ),
       floatingActionButtonTheme:
           FloatingActionButtonThemeData(backgroundColor: primaryColor),

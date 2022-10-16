@@ -33,44 +33,57 @@ class _HomescreenState extends State<Homescreen> {
           return Scaffold(
             drawer: Drawer(
                 child: ListView(
-              padding: EdgeInsets.zero,
+              // padding: EdgeInsets.zero,
               children: [
                 const DrawerHeader(
                   child: Text(''),
                 ),
-                ListTile(
-              
-                  trailing: Transform.scale(
-                    scale: 0.6,
-                    child: CupertinoSwitch(
-                      activeColor: NColors.primaryColor,
-                      value: theme.darkTheme,
-                      onChanged: (bool value) {
-                        theme.toggleTheme();
-                      },
-                    ),
-                  ),
-                  title: const Text('Theme'),
-                ),
                 Padding(
-                  padding: EdgeInsets.all(20.0.w),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  padding: const EdgeInsets.only(
+                    left: 20.0,
+                    top: 10,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Sort Notes'),
-                      CustomPopupMenu(
-                        onSortbyT: () {
-                          model.sortByTitle();
-                        },
-                        onSortbyN: () {
-                          model.sortByNote();
-                        },
-                        onSortbyD: () {
-                          model.sortByDate();
-                        },
-                        onSortbyI: () {
-                          model.sortById();
-                        },
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Filter'),
+                            CustomPopupMenu(
+                              onSortbyT: () {
+                                model.sortByTitle();
+                              },
+                              onSortbyN: () {
+                                model.sortByNote();
+                              },
+                              onSortbyD: () {
+                                model.sortByDate();
+                              },
+                              onSortbyI: () {
+                                model.sortById();
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Theme'),
+                          Transform.scale(
+                            scale: 0.5,
+                            child: CupertinoSwitch(
+                              activeColor: NColors.primaryColor,
+                              value: theme.darkTheme,
+                              onChanged: (bool value) {
+                                theme.toggleTheme();
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -80,27 +93,14 @@ class _HomescreenState extends State<Homescreen> {
             appBar: AppBar(
               title: Text(
                 'Notify',
-                style: TextStyle(fontSize: 24.sp),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline2
+                    ?.copyWith(fontSize: 24.sp),
               ),
               centerTitle: true,
               elevation: 10,
               backgroundColor: NColors.primaryColor,
-              // actions: [
-              //   CustomPopupMenu(
-              //     onSortbyT: () {
-              //       model.sortByTitle();
-              //     },
-              //     onSortbyN: () {
-              //       model.sortByNote();
-              //     },
-              //     onSortbyD: () {
-              //       model.sortByDate();
-              //     },
-              //     onSortbyI: () {
-              //       model.sortById();
-              //     },
-              //   ),
-              // ],
             ),
             body: Container(
               height: MediaQuery.of(context).size.height,

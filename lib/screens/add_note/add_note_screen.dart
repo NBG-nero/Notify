@@ -38,7 +38,10 @@ class _AddNotescreenState extends State<AddNotescreen> {
               appBar: AppBar(
                   title: Text(
                     'Add Note',
-                    style: TextStyle(fontSize: 24.sp),
+                    style: Theme.of(context)
+                    .textTheme
+                    .headline2
+                    ?.copyWith(fontSize: 22.sp),
                   ),
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(40),
@@ -54,39 +57,40 @@ class _AddNotescreenState extends State<AddNotescreen> {
                   elevation: 10,
                   backgroundColor: NColors.primaryColor.withOpacity(0.8)),
               body: SingleChildScrollView(
-                child: Container(
+                child: SizedBox(
                   height: MediaQuery.of(context).size.height,
-                  color: NColors.tertiaryolor,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Form(
-                      key: formKey,
-                      child: ListView(children: [
-                        LTextField(
-                            labelText: 'Title',
-                            hintText: 'enter title',
-                            maxlines: 1,
-                            maxlength: 500,
-                            style: TextStyle(
-                              fontSize: 22.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            controller: titleCtrl,
-                            obscureText: false,
-                            isMandatory: false),
-                        SizedBox(height: 10.h),
-                        LTextField(
-                            labelText: 'Note',
-                            hintText: 'enter note',
-                            maxlines: 10,
-                            maxlength: 2000,
-                            style: TextStyle(
-                              fontSize: 18.sp,
-                            ),
-                            controller: descCtrl,
-                            obscureText: false,
-                            isMandatory: false),
-                      ]),
+                  child: Material(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Form(
+                        key: formKey,
+                        child: ListView(children: [
+                          LTextField(
+                              labelText: 'Title',
+                              hintText: 'enter title',
+                              maxlines: 1,
+                              maxlength: 500,
+                              style: TextStyle(
+                                fontSize: 22.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              controller: titleCtrl,
+                              obscureText: false,
+                              isMandatory: false),
+                          SizedBox(height: 10.h),
+                          LTextField(
+                              labelText: 'Note',
+                              hintText: 'enter note',
+                              maxlines: 10,
+                              maxlength: 2000,
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                              ),
+                              controller: descCtrl,
+                              obscureText: false,
+                              isMandatory: false),
+                        ]),
+                      ),
                     ),
                   ),
                 ),
@@ -98,7 +102,7 @@ class _AddNotescreenState extends State<AddNotescreen> {
                   AutoRouter.of(context).pushAndPopUntil(const Homescreen(),
                       predicate: (route) => false);
                 },
-                backgroundColor: Colors.white,
+                backgroundColor: NColors.tertiaryolor,
                 child: Icon(Icons.add, size: 35.h, color: NColors.primaryColor),
               ));
         });

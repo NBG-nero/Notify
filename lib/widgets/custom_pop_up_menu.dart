@@ -1,22 +1,17 @@
 // ignore_for_file: avoid_print, sized_box_for_whitespace, avoid_unnecessary_containers
 
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-
 class CustomPopupMenu extends StatefulWidget {
-  
   final GestureTapCallback? onSortbyT;
   final GestureTapCallback? onSortbyN;
   final GestureTapCallback? onSortbyD;
   final GestureTapCallback? onSortbyI;
   const CustomPopupMenu({
     Key? key,
- 
     this.onSortbyT,
     this.onSortbyN,
     this.onSortbyD,
@@ -40,23 +35,20 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
         child: BackdropFilter(
           filter: ImageFilter.blur(),
           child: PopupMenuButton<int>(
-            tooltip: 'Sort Notes',
+            tooltip: 'Filter Notes',
             elevation: 4,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-         
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: const Icon(Icons.menu),
-              ),
+            child: Icon(
+              Icons.menu,
+              size: 25.h,
             ),
             onSelected: (int selectedValue) async {
               switch (selectedValue) {
                 case 0:
                   widget.onSortbyT!();
-                 
+
                   break;
                 case 1:
                   widget.onSortbyN!();
@@ -85,9 +77,8 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                      
                         Text(
-                          'Sort by Title',
+                          'Filter by Title',
                           style: textTheme.bodyText2?.copyWith(),
                         ),
                       ],
@@ -111,11 +102,9 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-
                       children: [
-                      
                         Text(
-                          'Sort by Note',
+                          'Filter by Note',
                           style: textTheme.bodyText2?.copyWith(),
                         ),
                       ],
@@ -139,15 +128,12 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-
                       children: [
-                     
                         Expanded(
                           child: Container(
                             // width: size.width * 0.6,
                             child: Text(
-                            
-                              'Sort by Date',
+                              'Filter by Date',
                               style: textTheme.bodyText2?.copyWith(),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -174,15 +160,13 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-
                       children: [
-                    
                         Expanded(
                           child: Container(
                             // width: size.width * 0.6,
                             child: Text(
                               // 'Mute ${widget.post.userName!}',
-                              'Sort by Id',
+                              'Filter by Id',
                               style: textTheme.bodyText2?.copyWith(),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -202,7 +186,6 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
                   ],
                 ),
               ),
-             
             ],
           ),
         ));
