@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:intl/intl.dart';
+
+// import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:stacked/stacked.dart';
@@ -34,6 +35,14 @@ class HomescreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  deleteAll() async {
+    log('clear all notes');
+    var hiveBox = Hive.box<Note>(noteBox);
+    await hiveBox.clear();
+    getNotes();
+    notifyListeners();
+  }
+
   getAnote(String id) {
     var hiveBox = Hive.box<Note>(noteBox);
     note = hiveBox.get(id);
@@ -44,6 +53,7 @@ class HomescreenViewModel extends BaseViewModel {
   sortByTitle() {
     notes.sort(
         ((a, b) => a.title!.toLowerCase().compareTo(b.title!.toLowerCase())));
+    log(notes.toString());
     notifyListeners();
   }
 
@@ -54,32 +64,31 @@ class HomescreenViewModel extends BaseViewModel {
   }
 
   sortByDate() {
-    String? formattedDate =
-        DateFormat.yMEd().format(note?.dateCreated ?? DateTime.now());
-    String? upDatedFormatDate =
-        DateFormat.yMEd().format(note?.updatedDate ?? DateTime.now());
+    // String? formattedDate =
+    //     DateFormat.yMEd().format(note?.dateCreated ?? DateTime.now());
+    // String? upDatedFormatDate =
+    //     DateFormat.yMEd().format(note?.updatedDate ?? DateTime.now());
 
-    // note?.altDate == null
-    //     ? (note?.dateCreated == null
-    //         ? formattedDate
-    //         : DateFormat.yMEd().format(note?.dateCreated ?? DateTime.now()))
-    //     : (note?.updatedDate == null
-    //         ? upDatedFormatDate
-    //         : DateFormat.yMEd()
-    //             .add_jm()
-    //             .format(note?.updatedDate ?? DateTime.now()));
-    note?.altDate = formattedDate;
-    formattedDate = upDatedFormatDate;
+    for (note in notes) {
+      String? formattedDate = note!.dateCreated!.toIso8601String();
+      String? newFormattedDate = note!.updatedDate!.toIso8601String();
+      // log(formattedDate);
+      // log(notes.toString());
+      // log(newFormattedDate);
 
-    ///Null check operator used on a null value
-    // notes.sort(((a, b) => a.altDate!.compareTo(b.altDate!)));
-    notes.sort((a, b) {
-      int aDate = DateTime.parse(a.altDate ?? '').microsecondsSinceEpoch;
-      int bDate = DateTime.parse(b.altDate ?? '').microsecondsSinceEpoch;
-      return aDate.compareTo(bDate);
-    });
+      formattedDate  = newFormattedDate;
 
-    notifyListeners();
+      note!.altDate = newFormattedDate;
+      log(note!.altDate.toString());
+
+      notes.sort((a, b) {
+        String aDate = DateTime.tryParse(a.altDate ?? '').toString();
+        String bDate = DateTime.tryParse(b.altDate ?? '').toString();
+        return aDate.compareTo(bDate);
+      });
+
+      notifyListeners();
+    }
   }
 
   sortById() {

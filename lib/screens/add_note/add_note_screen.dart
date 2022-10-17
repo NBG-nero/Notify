@@ -41,7 +41,7 @@ class _AddNotescreenState extends State<AddNotescreen> {
                     style: Theme.of(context)
                     .textTheme
                     .headline2
-                    ?.copyWith(fontSize: 22.sp),
+                    ?.copyWith(),
                   ),
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(40),
@@ -53,7 +53,7 @@ class _AddNotescreenState extends State<AddNotescreen> {
                               size: 25.sp)),
                     ),
                   ),
-                  centerTitle: true,
+                  centerTitle: false,
                   elevation: 10,
                   backgroundColor: NColors.primaryColor.withOpacity(0.8)),
               body: SingleChildScrollView(
@@ -70,10 +70,8 @@ class _AddNotescreenState extends State<AddNotescreen> {
                               hintText: 'enter title',
                               maxlines: 1,
                               maxlength: 500,
-                              style: TextStyle(
-                                fontSize: 22.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                                style:
+                                  Theme.of(context).textTheme.headline2?.copyWith(),
                               controller: titleCtrl,
                               obscureText: false,
                               isMandatory: false),
@@ -83,9 +81,8 @@ class _AddNotescreenState extends State<AddNotescreen> {
                               hintText: 'enter note',
                               maxlines: 10,
                               maxlength: 2000,
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                              ),
+                              style:  
+                                  Theme.of(context).textTheme.subtitle2?.copyWith(),
                               controller: descCtrl,
                               obscureText: false,
                               isMandatory: false),

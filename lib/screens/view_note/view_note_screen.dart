@@ -44,7 +44,7 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
                   style: Theme.of(context)
                       .textTheme
                       .headline2
-                      ?.copyWith(fontSize: 22.sp),
+                      ?.copyWith(),
                 ),
                 leading: ClipRRect(
                   borderRadius: BorderRadius.circular(40),
@@ -56,7 +56,7 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
                             size: 25.sp)),
                   ),
                 ),
-                centerTitle: true,
+                centerTitle: false,
                 elevation: 10,
                 backgroundColor: NColors.secondaryColor),
             body: SingleChildScrollView(
@@ -94,11 +94,11 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
                               maxLengthEnforcement: MaxLengthEnforcement
                                   .truncateAfterCompositionEnds,
                               style:
-                                  // Theme.of(context).textTheme.caption?.copyWith(),
-                                  TextStyle(
-                                fontSize: 22.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                                  Theme.of(context).textTheme.headline2?.copyWith(),
+                              //     TextStyle(
+                              //   fontSize: 22.sp,
+                              //   fontWeight: FontWeight.bold,
+                              // ),
                               controller: titleCtrl,
                             ),
                             // LTextField(
@@ -138,9 +138,12 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
                                 ),
                               ),
                               maxLines: 30,
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                              ),
+                              style:  
+                                  Theme.of(context).textTheme.subtitle2?.copyWith(),
+
+                              // style: TextStyle(
+                              //   fontSize: 18.sp,
+                              // ),
                               controller: descCtrl,
                             ),
                             // LTextField(

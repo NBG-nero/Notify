@@ -33,7 +33,8 @@ class Note {
     this.updatedDate,
     this.isEdited,
     this.altDate,
-  });
+  })
+  ;
   //  : dateCreated =dateCreated ?? DateTime.now();
 
   factory Note.from(Map<String, dynamic> json) => _$NoteFromJson(json);

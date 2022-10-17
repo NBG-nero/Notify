@@ -20,8 +20,14 @@ class EditNoteViewModel extends BaseViewModel {
     hiveBox.put(note.id, note);
   }
 
-  updateNote(String? id, String? title, String? desc) {
-    Note updateNote = Note(id: id, title: title, desc: desc, isEdited: true,updatedDate: DateTime.now());
+  updateNote(String? id, String? title, String? desc, dynamic dateCreated) {
+    Note updateNote = Note(
+        id: id,
+        title: title,
+        desc: desc,
+        isEdited: true,
+        dateCreated: dateCreated,
+        updatedDate: DateTime.now());
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(updateNote.id, updateNote);
     // log(id!);

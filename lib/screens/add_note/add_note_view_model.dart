@@ -23,7 +23,9 @@ class AddNoteViewModel extends BaseViewModel {
       desc: desc,
       complete: false,
       id: uuid.v4(),
-      dateCreated: DateTime.now()
+      isEdited: false,
+      dateCreated: DateTime.now(),
+      updatedDate: DateTime.now()
     );
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(note.id, note);

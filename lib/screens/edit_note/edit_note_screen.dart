@@ -39,11 +39,9 @@ class _EditNotescreenState extends State<EditNotescreen> {
             appBar: AppBar(
                 title: Text(
                   'Edit Note',
-                 style: Theme.of(context)
-                    .textTheme
-                    .headline2
-                    ?.copyWith(fontSize: 22.sp),
+                  style: Theme.of(context).textTheme.headline2?.copyWith(),
                 ),
+                centerTitle: false,
                 leading: ClipRRect(
                   borderRadius: BorderRadius.circular(40),
                   child: Material(
@@ -54,13 +52,11 @@ class _EditNotescreenState extends State<EditNotescreen> {
                             size: 25.sp)),
                   ),
                 ),
-                centerTitle: true,
                 elevation: 10,
                 backgroundColor: NColors.primaryColor.withOpacity(0.5)),
             body: SingleChildScrollView(
               child: SizedBox(
                   height: MediaQuery.of(context).size.height,
-          
                   child: Material(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -72,10 +68,10 @@ class _EditNotescreenState extends State<EditNotescreen> {
                                 hintText: 'enter title',
                                 maxlines: 1,
                                 maxlength: 500,
-                                style: TextStyle(
-                                  fontSize: 22.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline2
+                                    ?.copyWith(),
                                 controller: titleCtrl,
                                 obscureText: false,
                                 isMandatory: false),
@@ -85,18 +81,22 @@ class _EditNotescreenState extends State<EditNotescreen> {
                                 hintText: 'enter note',
                                 maxlines: 10,
                                 maxlength: 2000,
-                                style: TextStyle(
-                                  fontSize: 18.sp,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle2
+                                    ?.copyWith(),
                                 controller: descCtrl,
                                 obscureText: false,
                                 isMandatory: false),
                             SizedBox(height: 30.h),
                             LButton(
                               onPressed: () {
-                                model.updateNote(widget.note!.id, titleCtrl.text,
-                                    descCtrl.text);
-                             
+                                model.updateNote(
+                                    widget.note!.id,
+                                    titleCtrl.text,
+                                    descCtrl.text,
+                                    widget.note!.dateCreated);
+
                                 AutoRouter.of(context).pushAndPopUntil(
                                     const Homescreen(),
                                     predicate: (route) => false);

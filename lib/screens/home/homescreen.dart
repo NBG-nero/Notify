@@ -2,18 +2,21 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:stacked/stacked.dart';
+
 import 'package:notify/providers/theme_notifier.dart';
 import 'package:notify/screens/home/home_screen_view_model.dart';
 import 'package:notify/widgets/widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:stacked/stacked.dart';
 
 import '../../models/models.dart';
 import '../../routes/router.gr.dart';
 import '../../utilities/constants/constants.dart';
 
 class Homescreen extends StatefulWidget {
-  const Homescreen({super.key});
+  const Homescreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Homescreen> createState() => _HomescreenState();
@@ -69,12 +72,27 @@ class _HomescreenState extends State<Homescreen> {
                           ],
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0, right: 18),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Delete All'),
+                            InkWell(
+                                onTap: () {
+                                  model.deleteAll();
+                                },
+                                child: Icon(Icons.delete_forever_rounded,
+                                    size: 28.h)),
+                          ],
+                        ),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text('Theme'),
                           Transform.scale(
-                            scale: 0.5,
+                            scale: 0.47,
                             child: CupertinoSwitch(
                               activeColor: NColors.primaryColor,
                               value: theme.darkTheme,
