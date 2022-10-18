@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:hive_flutter/hive_flutter.dart';
 
-// import 'package:intl/intl.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:stacked/stacked.dart';
@@ -14,7 +14,7 @@ class HomescreenViewModel extends BaseViewModel {
   List<Note> notes = <Note>[];
   Note? note;
   SharedPreferences? prefs;
-  // Comparator<Note> sortbyId = ((a, b) => a.id!.compareTo(b.id!));
+ 
   initPrefs() async {
     prefs = await SharedPreferences.getInstance();
   }
@@ -53,7 +53,6 @@ class HomescreenViewModel extends BaseViewModel {
   sortByTitle() {
     notes.sort(
         ((a, b) => a.title!.toLowerCase().compareTo(b.title!.toLowerCase())));
-    log(notes.toString());
     notifyListeners();
   }
 
@@ -64,29 +63,20 @@ class HomescreenViewModel extends BaseViewModel {
   }
 
   sortByDate() {
-    // String? formattedDate =
-    //     DateFormat.yMEd().format(note?.dateCreated ?? DateTime.now());
-    // String? upDatedFormatDate =
-    //     DateFormat.yMEd().format(note?.updatedDate ?? DateTime.now());
-
     for (note in notes) {
+      // ignore: unused_local_variable
       String? formattedDate = note!.dateCreated!.toIso8601String();
       String? newFormattedDate = note!.updatedDate!.toIso8601String();
       // log(formattedDate);
-      // log(notes.toString());
       // log(newFormattedDate);
-
       formattedDate  = newFormattedDate;
-
       note!.altDate = newFormattedDate;
       log(note!.altDate.toString());
-
       notes.sort((a, b) {
         String aDate = DateTime.tryParse(a.altDate ?? '').toString();
         String bDate = DateTime.tryParse(b.altDate ?? '').toString();
         return aDate.compareTo(bDate);
       });
-
       notifyListeners();
     }
   }

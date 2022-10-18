@@ -1,4 +1,7 @@
-// import 'dart:convert';
+
+
+
+
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -24,6 +27,7 @@ class Note {
   @HiveField(7)
   String? altDate;
 
+
   Note({
     this.title,
     this.id,
@@ -33,8 +37,8 @@ class Note {
     this.updatedDate,
     this.isEdited,
     this.altDate,
-  })
-  ;
+    
+  });
   //  : dateCreated =dateCreated ?? DateTime.now();
 
   factory Note.from(Map<String, dynamic> json) => _$NoteFromJson(json);

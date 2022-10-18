@@ -90,6 +90,7 @@ class _EditNotescreenState extends State<EditNotescreen> {
                                 isMandatory: false),
                             SizedBox(height: 30.h),
                             LButton(
+                              minWidth: MediaQuery.of(context).size.width * 0.5,
                               onPressed: () {
                                 model.updateNote(
                                     widget.note!.id,

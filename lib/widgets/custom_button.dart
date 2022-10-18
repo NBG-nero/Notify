@@ -39,7 +39,7 @@ class _LButtonState extends State<LButton> {
         borderRadius: BorderRadius.circular(10.0),
         side: BorderSide(color: widget.sideColor ?? Colors.transparent),
       ),
-      minWidth: MediaQuery.of(context).size.width * 0.90,
+      minWidth:widget.minWidth ?? MediaQuery.of(context).size.width * 0.90 ,
       padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
       onPressed: widget.onPressed!,
       child: widget.child ?? Text(widget.buttontext ?? 'buttontext',

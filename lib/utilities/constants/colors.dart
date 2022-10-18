@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class NColors {
   NColors._();
   static Color primaryColor = const Color(0xFF0D47A1);
-
+  static Color fColor = Colors.blue;
   static Color secondaryColor = const Color.fromARGB(255, 101, 161, 203);
   static Color tertiaryolor = Colors.blue.shade50;
   static Color sideColor = const Color(0xFF27BAF2);

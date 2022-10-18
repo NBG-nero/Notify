@@ -35,73 +35,84 @@ class _AddNotescreenState extends State<AddNotescreen> {
         },
         builder: (context, model, child) {
           return Scaffold(
-              appBar: AppBar(
-                  title: Text(
-                    'Add Note',
-                    style: Theme.of(context)
-                    .textTheme
-                    .headline2
-                    ?.copyWith(),
-                  ),
-                  leading: ClipRRect(
-                    borderRadius: BorderRadius.circular(40),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                          onTap: AutoRouter.of(context).pop,
-                          child: Icon(Icons.arrow_back_ios_new_rounded,
-                              size: 25.sp)),
-                    ),
-                  ),
-                  centerTitle: false,
-                  elevation: 10,
-                  backgroundColor: NColors.primaryColor.withOpacity(0.8)),
-              body: SingleChildScrollView(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
+            appBar: AppBar(
+                title: Text(
+                  'Add Note',
+                  style: Theme.of(context).textTheme.headline2?.copyWith(),
+                ),
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(40),
                   child: Material(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Form(
-                        key: formKey,
-                        child: ListView(children: [
-                          LTextField(
-                              labelText: 'Title',
-                              hintText: 'enter title',
-                              maxlines: 1,
-                              maxlength: 500,
-                                style:
-                                  Theme.of(context).textTheme.headline2?.copyWith(),
-                              controller: titleCtrl,
-                              obscureText: false,
-                              isMandatory: false),
-                          SizedBox(height: 10.h),
-                          LTextField(
-                              labelText: 'Note',
-                              hintText: 'enter note',
-                              maxlines: 10,
-                              maxlength: 2000,
-                              style:  
-                                  Theme.of(context).textTheme.subtitle2?.copyWith(),
-                              controller: descCtrl,
-                              obscureText: false,
-                              isMandatory: false),
-                        ]),
-                      ),
+                    color: Colors.transparent,
+                    child: InkWell(
+                        onTap: AutoRouter.of(context).pop,
+                        child: Icon(Icons.arrow_back_ios_new_rounded,
+                            size: 25.sp)),
+                  ),
+                ),
+                centerTitle: false,
+                elevation: 10,
+                backgroundColor: NColors.primaryColor.withOpacity(0.8)),
+            body: SingleChildScrollView(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: Material(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Form(
+                      key: formKey,
+                      child: ListView(children: [
+                        LTextField(
+                            labelText: 'Title',
+                            hintText: 'enter title',
+                            maxlines: 1,
+                            maxlength: 500,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline2
+                                ?.copyWith(),
+                            controller: titleCtrl,
+                            obscureText: false,
+                            isMandatory: false),
+                        SizedBox(height: 10.h),
+                        LTextField(
+                            labelText: 'Note',
+                            hintText: 'enter note',
+                            maxlines: 10,
+                            maxlength: 2000,
+                            style: Theme.of(context)
+                                .textTheme
+                                .subtitle2
+                                ?.copyWith(),
+                            controller: descCtrl,
+                            obscureText: false,
+                            isMandatory: false),
+                      ]),
                     ),
                   ),
                 ),
               ),
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  model.addNote(title: titleCtrl.text, desc: descCtrl.text);
+            ),
+            floatingActionButton: FloatingActionButton.extended(
+              tooltip: 'Add Note',
+              label: Text('Add Note',
+                  style: Theme.of(context)
+                      .textTheme
+                      .button
+                      ?.copyWith(color: Colors.white)),
+              onPressed: () {
+                model.addNote(title: titleCtrl.text, desc: descCtrl.text);
 
-                  AutoRouter.of(context).pushAndPopUntil(const Homescreen(),
-                      predicate: (route) => false);
-                },
-                backgroundColor: NColors.tertiaryolor,
-                child: Icon(Icons.add, size: 35.h, color: NColors.primaryColor),
-              ));
+                AutoRouter.of(context).pushAndPopUntil(const Homescreen(),
+                    predicate: (route) => false);
+              },
+              // backgroundColor: NColors.tertiaryolor,
+              icon: Icon(
+                Icons.add,
+                size: 30.h,
+              ),
+            ),
+          );
         });
   }
 }

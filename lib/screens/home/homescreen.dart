@@ -73,7 +73,7 @@ class _HomescreenState extends State<Homescreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 8.0, right: 18),
+                        padding: const EdgeInsets.only(top: 20.0, right: 18),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -87,21 +87,24 @@ class _HomescreenState extends State<Homescreen> {
                           ],
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text('Theme'),
-                          Transform.scale(
-                            scale: 0.47,
-                            child: CupertinoSwitch(
-                              activeColor: NColors.primaryColor,
-                              value: theme.darkTheme,
-                              onChanged: (bool value) {
-                                theme.toggleTheme();
-                              },
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Theme'),
+                            Transform.scale(
+                              scale: 0.47,
+                              child: CupertinoSwitch(
+                                activeColor: NColors.primaryColor,
+                                value: theme.darkTheme,
+                                onChanged: (bool value) {
+                                  theme.toggleTheme();
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -133,12 +136,7 @@ class _HomescreenState extends State<Homescreen> {
 
                     return NotesCard(
                       note: note,
-                      onTap: () {
-                        // AutoRouter.of(context).pop();
-                        // AutoRouter.of(context)
-                        //     .push(AddNotescreen(note: model.note));
-                        // model.editNote();
-                      },
+                      onTap: () {},
                       onDTap: () {
                         model.delNote(note.id!);
                       },
@@ -153,13 +151,16 @@ class _HomescreenState extends State<Homescreen> {
                 ),
               ),
             ),
-            floatingActionButton: FloatingActionButton(
+            floatingActionButton:
+             FloatingActionButton(
+              tooltip: 'New Note',
               onPressed: () {
                 AutoRouter.of(context).push(AddNotescreen(note: model.note));
               },
-              backgroundColor: NColors.primaryColor,
-              child: Icon(Icons.add, size: 30.h, color: Colors.white),
+              // backgroundColor: Colors.blue,
+              child: Icon(Icons.note_add, size: 30.h, color: Colors.white),
             ),
+            
           );
         });
   }
