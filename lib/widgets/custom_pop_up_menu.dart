@@ -59,12 +59,7 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
                 case 3:
                   widget.onSortbyI!();
                   break;
-                // case 4:
-                //   print('Reported');
-                //   break;
-                // case 5:
-                //   print('Only your friends can see this post');
-                //   break;
+            
               }
             },
             itemBuilder: (context) => [
