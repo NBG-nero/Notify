@@ -5,13 +5,17 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../screens/home/home_screen_view_model.dart';
+
 class CustomPopupMenu extends StatefulWidget {
+  final HomescreenViewModel? homeViewModel;
   final GestureTapCallback? onSortbyT;
   final GestureTapCallback? onSortbyN;
   final GestureTapCallback? onSortbyD;
   final GestureTapCallback? onSortbyI;
   const CustomPopupMenu({
     Key? key,
+   this.homeViewModel,
     this.onSortbyT,
     this.onSortbyN,
     this.onSortbyD,
@@ -27,6 +31,7 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
   Widget build(BuildContext context) {
     // var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
+
     return Container(
         alignment: Alignment.centerRight,
         decoration: BoxDecoration(
@@ -45,6 +50,7 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
               size: 25.h,
             ),
             onSelected: (int selectedValue) async {
+              // widget.homeViewModel?.prefs?.setInt('selectedValue', selectedValue);
               switch (selectedValue) {
                 case 0:
                   widget.onSortbyT!();
@@ -59,8 +65,8 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
                 case 3:
                   widget.onSortbyI!();
                   break;
-            
               }
+              
             },
             itemBuilder: (context) => [
               PopupMenuItem(

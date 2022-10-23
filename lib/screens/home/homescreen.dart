@@ -35,90 +35,23 @@ class _HomescreenState extends State<Homescreen> {
         builder: (context, model, child) {
           return Scaffold(
             drawer: CustomDrawer(
-              filterByTitle: model.sortByTitle(),
-              filterByNote: model.sortByNote(),
-              filterByDate: model.sortByDate(),
-              filterByID: model.sortById(),
-              onDeleteAll: model.deleteAll(),
+              filterByTitle: () {
+                model.sortByTitle();
+              },
+              filterByNote: () {
+                model.sortByNote();
+              },
+              filterByDate: () {
+                model.sortByDate();
+              },
+              filterByID: () {
+                model.sortById();
+              },
+              onDeleteAll: () {
+                model.deleteAll();
+              },
             ),
-            // drawer: Drawer(
-            //   child: ListView(
-            //     // padding: EdgeInsets.zero,
-            //     children: [
-            //       const DrawerHeader(
-            //         child: Text(''),
-            //       ),
-            //       Padding(
-            //         padding: const EdgeInsets.only(
-            //           left: 20.0,
-            //           top: 10,
-            //         ),
-            //         child: Column(
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             Padding(
-            //               padding: const EdgeInsets.only(right: 20.0),
-            //               child: Row(
-            //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //                 children: [
-            //                   const Text('Filter'),
-            //                   CustomPopupMenu(
-            //                     onSortbyT: () {
-            //                       model.sortByTitle();
-            //                     },
-            //                     onSortbyN: () {
-            //                       model.sortByNote();
-            //                     },
-            //                     onSortbyD: () {
-            //                       model.sortByDate();
-            //                     },
-            //                     onSortbyI: () {
-            //                       model.sortById();
-            //                     },
-            //                   ),
-            //                 ],
-            //               ),
-            //             ),
-            //             Padding(
-            //               padding: const EdgeInsets.only(top: 20.0, right: 18),
-            //               child: Row(
-            //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //                 children: [
-            //                   const Text('Delete All'),
-            //                   InkWell(
-            //                       onTap: () {
-            //                         model.deleteAll();
-            //                       },
-            //                       child: Icon(Icons.delete_forever_rounded,
-            //                           size: 28.h)),
-            //                 ],
-            //               ),
-            //             ),
-            //             Padding(
-            //               padding: const EdgeInsets.only(top: 10.0),
-            //               child: Row(
-            //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //                 children: [
-            //                   const Text('Theme'),
-            //                   Transform.scale(
-            //                     scale: 0.47,
-            //                     child: CupertinoSwitch(
-            //                       activeColor: NColors.primaryColor,
-            //                       value: theme.darkTheme,
-            //                       onChanged: (bool value) {
-            //                         theme.toggleTheme();
-            //                       },
-            //                     ),
-            //                   ),
-            //                 ],
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+          
             appBar: AppBar(
               title: Text(
                 'Notify',
