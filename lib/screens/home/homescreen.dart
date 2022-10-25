@@ -51,7 +51,6 @@ class _HomescreenState extends State<Homescreen> {
                 model.deleteAll();
               },
             ),
-          
             appBar: AppBar(
               title: Text(
                 'Notify',
@@ -63,34 +62,82 @@ class _HomescreenState extends State<Homescreen> {
               centerTitle: true,
               elevation: 10,
               backgroundColor: NColors.primaryColor,
+              actions: [
+                // ignore: sized_box_for_whitespace
+                Container(
+                    height: 20.h,
+                    width: 60.w,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (model.switchView == false) {
+                          model.setView(true);
+                        } else {
+                          model.setView(false);
+                        }
+                      },
+                      child: !model.switchView == true
+                          ? Icon(Icons.list_alt_outlined, size: 25.sp)
+                          : Icon(Icons.grid_view_outlined, size: 26.sp),
+                    )),
+              ],
             ),
             body: Container(
               height: MediaQuery.of(context).size.height,
               color: NColors.tertiaryolor,
               child: SingleChildScrollView(
-                child: ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: model.notes.length,
-                  itemBuilder: (context, index) {
-                    Note note = model.notes[index];
+                  child: model.switchView == false
+                      ? ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: model.notes.length,
+                          itemBuilder: (context, index) {
+                            Note note = model.notes[index];
 
-                    return NotesCard(
-                      note: note,
-                      onTap: () {},
-                      onDTap: () {
-                        model.delNote(note.id!);
-                      },
-                      onVTap: () {
-                        AutoRouter.of(context).push(ViewNotescreen(note: note));
-                      },
-                      onETap: () {
-                        AutoRouter.of(context).push(EditNotescreen(note: note));
-                      },
-                    );
-                  },
-                ),
-              ),
+                            return NotesCard(
+                              note: note,
+                              onTap: () {},
+                              onDTap: () {
+                                model.delNote(note.id!);
+                              },
+                              onVTap: () {
+                                AutoRouter.of(context)
+                                    .push(ViewNotescreen(note: note));
+                              },
+                              onETap: () {
+                                AutoRouter.of(context)
+                                    .push(EditNotescreen(note: note));
+                              },
+                            );
+                          },
+                        )
+                      : SizedBox( 
+                        height: MediaQuery.of(context).size.height * 0.9,
+                        child: GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 2.w,
+                                    mainAxisSpacing: 2.w),
+                            itemCount: model.notes.length,
+                            itemBuilder: ((context, index) {
+                              Note note = model.notes[index];
+                              return NotesCard(
+                                note: note,
+                                onTap: () {},
+                                onDTap: () {
+                                  model.delNote(note.id!);
+                                },
+                                onVTap: () {
+                                  AutoRouter.of(context)
+                                      .push(ViewNotescreen(note: note));
+                                },
+                                onETap: () {
+                                  AutoRouter.of(context)
+                                      .push(EditNotescreen(note: note));
+                                },
+                              );
+                            })),
+                      )),
             ),
             floatingActionButton: FloatingActionButton(
               tooltip: 'New Note',

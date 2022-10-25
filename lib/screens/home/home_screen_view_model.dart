@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:hive_flutter/hive_flutter.dart';
 
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:stacked/stacked.dart';
@@ -14,9 +13,15 @@ class HomescreenViewModel extends BaseViewModel {
   List<Note> notes = <Note>[];
   Note? note;
   SharedPreferences? prefs;
- 
+  bool switchView = false;
+
   initPrefs() async {
     prefs = await SharedPreferences.getInstance();
+  }
+
+  setView(value) {
+    switchView = value;
+    notifyListeners();
   }
 
   getNotes() {
@@ -69,7 +74,7 @@ class HomescreenViewModel extends BaseViewModel {
       String? newFormattedDate = note!.updatedDate!.toIso8601String();
       // log(formattedDate);
       // log(newFormattedDate);
-      formattedDate  = newFormattedDate;
+      formattedDate = newFormattedDate;
       note!.altDate = newFormattedDate;
       log(note!.altDate.toString());
       notes.sort((a, b) {
