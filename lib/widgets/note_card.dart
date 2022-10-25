@@ -6,7 +6,9 @@ import 'package:intl/intl.dart';
 
 import 'package:notify/utilities/constants/constants.dart';
 
+
 import '../models/models.dart';
+
 
 class NotesCard extends StatefulWidget {
   final Note note;
@@ -31,6 +33,8 @@ class NotesCard extends StatefulWidget {
 class _NotesCardState extends State<NotesCard> {
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     String? formattedDate =
         DateFormat.yMEd().format(widget.note.dateCreated ?? DateTime.now());
     String? upDatedFormatDate =
@@ -63,7 +67,7 @@ class _NotesCardState extends State<NotesCard> {
                               : DateFormat.yMEd()
                                   .add_jm()
                                   .format(widget.note.updatedDate!)),
-                      style: Theme.of(context).textTheme.button?.copyWith(
+                      style: textTheme.button?.copyWith(
                           fontSize: 12.sp, color: NColors.primaryColor),
                     ),
                   ],
@@ -82,9 +86,8 @@ class _NotesCardState extends State<NotesCard> {
                               child: Text(
                                 widget.note.title ?? "New Note",
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.bold),
+                                style: textTheme.headline2?.copyWith(),
+                                
                               ),
                             ),
                           ],
@@ -97,7 +100,7 @@ class _NotesCardState extends State<NotesCard> {
                           child: Text(
                             widget.note.desc ?? "Description",
                             // overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 17.sp),
+                            style: textTheme.subtitle2?.copyWith()
                           ),
                         ),
                       ],

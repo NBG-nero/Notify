@@ -10,6 +10,7 @@ import '../../models/models.dart';
 import '../../utilities/constants/constants.dart';
 
 class HomescreenViewModel extends BaseViewModel {
+  final String views = 'noteviews';
   List<Note> notes = <Note>[];
   Note? note;
   SharedPreferences? prefs;
@@ -19,8 +20,24 @@ class HomescreenViewModel extends BaseViewModel {
     prefs = await SharedPreferences.getInstance();
   }
 
+  HomescreenViewModel() {
+    loadfromPrefs();
+  }
+  
   setView(value) {
     switchView = value;
+    saveToprefs();
+    notifyListeners();
+  }
+
+  saveToprefs() async {
+    await initPrefs();
+    prefs?.setBool(views, switchView);
+  }
+
+  loadfromPrefs() async {
+    await initPrefs();
+    switchView = prefs?.getBool(views) ?? false;
     notifyListeners();
   }
 

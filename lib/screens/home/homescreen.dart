@@ -110,33 +110,36 @@ class _HomescreenState extends State<Homescreen> {
                             );
                           },
                         )
-                      : SizedBox( 
-                        height: MediaQuery.of(context).size.height * 0.9,
-                        child: GridView.builder(
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 2.w,
-                                    mainAxisSpacing: 2.w),
-                            itemCount: model.notes.length,
-                            itemBuilder: ((context, index) {
-                              Note note = model.notes[index];
-                              return NotesCard(
-                                note: note,
-                                onTap: () {},
-                                onDTap: () {
-                                  model.delNote(note.id!);
-                                },
-                                onVTap: () {
-                                  AutoRouter.of(context)
-                                      .push(ViewNotescreen(note: note));
-                                },
-                                onETap: () {
-                                  AutoRouter.of(context)
-                                      .push(EditNotescreen(note: note));
-                                },
-                              );
-                            })),
+                      : Padding(
+                        padding: const EdgeInsets.only(top:8.0,right:7,left:7,),
+                        child: SizedBox( 
+                          height: MediaQuery.of(context).size.height * 0.9,
+                          child: GridView.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 2.w,
+                                      mainAxisSpacing: 2.w),
+                              itemCount: model.notes.length,
+                              itemBuilder: ((context, index) {
+                                Note note = model.notes[index];
+                                return GridNotesCard(
+                                  note: note,
+                                
+                                  onDTap: () {
+                                    model.delNote(note.id!);
+                                  },
+                                  onVTap: () {
+                                    AutoRouter.of(context)
+                                        .push(ViewNotescreen(note: note));
+                                  },
+                                  onETap: () {
+                                    AutoRouter.of(context)
+                                        .push(EditNotescreen(note: note));
+                                  },
+                                );
+                              })),
+                        ),
                       )),
             ),
             floatingActionButton: FloatingActionButton(
