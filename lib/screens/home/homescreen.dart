@@ -1,17 +1,19 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+// import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
-import 'package:notify/providers/theme_notifier.dart';
+// import 'package:notify/providers/theme_notifier.dart';
 import 'package:notify/screens/home/home_screen_view_model.dart';
 import 'package:notify/widgets/widgets.dart';
 
 import '../../models/models.dart';
 import '../../routes/router.gr.dart';
 import '../../utilities/constants/constants.dart';
+import '../../widgets/grid_tile.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({
@@ -25,7 +27,7 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeNotifier>(context);
+    // final theme = Provider.of<ThemeNotifier>(context);
     return ViewModelBuilder<HomescreenViewModel>.reactive(
         viewModelBuilder: () => HomescreenViewModel(),
         onModelReady: (h) {
@@ -37,15 +39,19 @@ class _HomescreenState extends State<Homescreen> {
             drawer: CustomDrawer(
               filterByTitle: () {
                 model.sortByTitle();
+                model.setFilter(0);
               },
               filterByNote: () {
                 model.sortByNote();
+                model.setFilter(1);
               },
               filterByDate: () {
                 model.sortByDate();
+                model.setFilter(2);
               },
               filterByID: () {
                 model.sortById();
+                model.setFilter(3);
               },
               onDeleteAll: () {
                 model.deleteAll();
@@ -75,7 +81,7 @@ class _HomescreenState extends State<Homescreen> {
                           model.setView(false);
                         }
                       },
-                      child: !model.switchView == true
+                      child: model.switchView == true
                           ? Icon(Icons.list_alt_outlined, size: 25.sp)
                           : Icon(Icons.grid_view_outlined, size: 26.sp),
                     )),
@@ -111,36 +117,97 @@ class _HomescreenState extends State<Homescreen> {
                           },
                         )
                       : Padding(
-                        padding: const EdgeInsets.only(top:8.0,right:7,left:7,),
-                        child: SizedBox( 
-                          height: MediaQuery.of(context).size.height * 0.9,
-                          child: GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 2.w,
-                                      mainAxisSpacing: 2.w),
-                              itemCount: model.notes.length,
-                              itemBuilder: ((context, index) {
-                                Note note = model.notes[index];
-                                return GridNotesCard(
-                                  note: note,
-                                
-                                  onDTap: () {
-                                    model.delNote(note.id!);
-                                  },
-                                  onVTap: () {
-                                    AutoRouter.of(context)
-                                        .push(ViewNotescreen(note: note));
-                                  },
-                                  onETap: () {
-                                    AutoRouter.of(context)
-                                        .push(EditNotescreen(note: note));
-                                  },
-                                );
-                              })),
-                        ),
-                      )),
+                          padding: const EdgeInsets.only(
+                            top: 8.0,
+                            right: 6,
+                            left: 6,
+                          ),
+                          child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.9,
+                              child: SingleChildScrollView(
+                                child: StaggeredGrid.count(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 2.w,
+                                  crossAxisSpacing: 2.w,
+                                  children: [
+                                    StaggeredGridTile.count(
+                                      crossAxisCellCount: 1,
+                                      mainAxisCellCount: 1,
+                                      child: Tile(
+                                        index: 0,
+                                        model: model,
+                                      ),
+                                    ),
+                                    StaggeredGridTile.count(
+                                      crossAxisCellCount: 1,
+                                      mainAxisCellCount: 1.5,
+                                      child: Tile(
+                                        index: 1,
+                                        model: model,
+                                      ),
+                                    ), 
+                                     StaggeredGridTile.count(
+                                      crossAxisCellCount: 1,
+                                      mainAxisCellCount: 1,
+                                      child: Tile(
+                                        index: 2,
+                                        model: model,
+                                      ),
+                                    ), 
+                                      StaggeredGridTile.count(
+                                      crossAxisCellCount: 1,
+                                      mainAxisCellCount: 1.8,
+                                      child: Tile(
+                                        index: 3,
+                                        model: model,
+                                      ),
+                                    ), 
+                                      StaggeredGridTile.count(
+                                      crossAxisCellCount: 1,
+                                      mainAxisCellCount: 2,
+                                      child: Tile(
+                                        index: 4,
+                                        model: model,
+                                      ),
+                                    ), 
+                                                           StaggeredGridTile.count(
+                                      crossAxisCellCount: 1,
+                                      mainAxisCellCount: 2,
+                                      child: Tile(
+                                        index: 5,
+                                        model: model,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+
+                              // child: GridView.builder(
+                              //     gridDelegate:
+                              //         SliverGridDelegateWithFixedCrossAxisCount(
+                              //             crossAxisCount: 2,
+                              //             crossAxisSpacing: 1.w,
+                              //             mainAxisSpacing: 1.w),
+                              //     itemCount: model.notes.length,
+                              //     itemBuilder: ((context, index) {
+                              //       Note note = model.notes[index];
+                              //       return GridNotesCard(
+                              //         note: note,
+                              //         onDTap: () {
+                              //           model.delNote(note.id!);
+                              //         },
+                              //         onVTap: () {
+                              //           AutoRouter.of(context)
+                              //               .push(ViewNotescreen(note: note));
+                              //         },
+                              //         onETap: () {
+                              //           AutoRouter.of(context)
+                              //               .push(EditNotescreen(note: note));
+                              //         },
+                              //       );
+                              //     }),),
+                              ),
+                        )),
             ),
             floatingActionButton: FloatingActionButton(
               tooltip: 'New Note',

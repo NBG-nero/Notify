@@ -39,17 +39,18 @@ class _GridNotesCardState extends State<GridNotesCard> {
     return Padding(
       padding: const EdgeInsets.all(3.0),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
         child: Material(
           elevation: 30,
           child: Container(
-              margin: const EdgeInsets.all(4),
-              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.all(6),
+              padding: const EdgeInsets.all(2),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     child: Column(
+                      
                       children: [
                         Column(
                           children: [
@@ -62,7 +63,7 @@ class _GridNotesCardState extends State<GridNotesCard> {
                               height: 20.h,
                             ),
                             Container(
-                              height: 90.h,
+                              height: 100.h,
                               child: SingleChildScrollView(
                                 child: Text(widget.note.desc ?? "Description",
                                     // overflow: TextOverflow.ellipsis,
@@ -87,7 +88,7 @@ class _GridNotesCardState extends State<GridNotesCard> {
                                             .add_jm()
                                             .format(widget.note.updatedDate!)),
                                 style: textTheme.button?.copyWith(
-                                    fontSize: 12.sp,
+                                    fontSize: 11.sp,
                                     color: NColors.primaryColor),
                               ),
                             ],

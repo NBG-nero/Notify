@@ -47,9 +47,9 @@ class _NotesCardState extends State<NotesCard> {
         child: Material(
           elevation: 30,
           child: Container(
-            margin: const EdgeInsets.all(8),
-            padding: const EdgeInsets.all(10),
-            height: 190.h,
+            margin: const EdgeInsets.all(4),
+            padding: const EdgeInsets.only(top:10,right:10,left:10),
+            height: 180.h,
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
@@ -93,7 +93,7 @@ class _NotesCardState extends State<NotesCard> {
                           ],
                         ),
                         SizedBox(
-                          height: 5.h,
+                          height: 8.h,
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.75,
@@ -107,12 +107,12 @@ class _NotesCardState extends State<NotesCard> {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.h),
+                SizedBox(height: 4.h),
                 Divider(
                   color: Colors.grey.shade300,
                   thickness: 2,
                 ),
-                SizedBox(height: 5.h),
+                SizedBox(height: 8.h),
                 Padding(
                   padding: EdgeInsets.only(
                     left: 40.w,

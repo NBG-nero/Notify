@@ -10,20 +10,23 @@ import '../../models/models.dart';
 import '../../utilities/constants/constants.dart';
 
 class HomescreenViewModel extends BaseViewModel {
+  HomescreenViewModel() {
+    loadfromPrefs();
+    loadfilterFromprefs();
+  }
+
   final String views = 'noteviews';
   List<Note> notes = <Note>[];
   Note? note;
   SharedPreferences? prefs;
   bool switchView = false;
+  final String filter = 'notesfilter';
+  int? selectedValue ;
 
   initPrefs() async {
     prefs = await SharedPreferences.getInstance();
   }
 
-  HomescreenViewModel() {
-    loadfromPrefs();
-  }
-  
   setView(value) {
     switchView = value;
     saveToprefs();
@@ -37,7 +40,27 @@ class HomescreenViewModel extends BaseViewModel {
 
   loadfromPrefs() async {
     await initPrefs();
+
     switchView = prefs?.getBool(views) ?? false;
+
+    notifyListeners();
+  }
+
+  setFilter(val) {
+    selectedValue = val;
+    savefiltterToprefs();
+    notifyListeners();
+  }
+
+  savefiltterToprefs() async {
+    await initPrefs();
+    prefs?.setInt(filter, selectedValue!);
+    notifyListeners();
+  }
+
+  loadfilterFromprefs() async {
+    await initPrefs();
+    selectedValue = prefs?.getInt(filter) ?? 0;
     notifyListeners();
   }
 
@@ -92,7 +115,7 @@ class HomescreenViewModel extends BaseViewModel {
       // log(formattedDate);
       // log(newFormattedDate);
       formattedDate = newFormattedDate;
-      note!.altDate = newFormattedDate;
+      note!.altDate = newFormattedDate = formattedDate;
       log(note!.altDate.toString());
       notes.sort((a, b) {
         String aDate = DateTime.tryParse(a.altDate ?? '').toString();
