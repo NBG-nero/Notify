@@ -12,7 +12,7 @@ import '../../utilities/constants/constants.dart';
 class HomescreenViewModel extends BaseViewModel {
   HomescreenViewModel() {
     loadfromPrefs();
-    loadfilterFromprefs();
+    // loadfilterFromprefs();
   }
 
   final String views = 'noteviews';
@@ -21,7 +21,7 @@ class HomescreenViewModel extends BaseViewModel {
   SharedPreferences? prefs;
   bool switchView = false;
   final String filter = 'notesfilter';
-  int? selectedValue ;
+  int selectedValue = 0;
 
   initPrefs() async {
     prefs = await SharedPreferences.getInstance();
@@ -40,29 +40,27 @@ class HomescreenViewModel extends BaseViewModel {
 
   loadfromPrefs() async {
     await initPrefs();
-
     switchView = prefs?.getBool(views) ?? false;
-
     notifyListeners();
   }
 
-  setFilter(val) {
-    selectedValue = val;
-    savefiltterToprefs();
-    notifyListeners();
-  }
+  // setFilter(value) {
+  //   selectedValue = value;
+  //   savefiltterToprefs();
+  //   notifyListeners();
+  // }
 
-  savefiltterToprefs() async {
-    await initPrefs();
-    prefs?.setInt(filter, selectedValue!);
-    notifyListeners();
-  }
+  // savefiltterToprefs() async {
+  //   await initPrefs();
+  //   prefs?.setInt(filter, selectedValue);
+ 
+  // }
 
-  loadfilterFromprefs() async {
-    await initPrefs();
-    selectedValue = prefs?.getInt(filter) ?? 0;
-    notifyListeners();
-  }
+  // loadfilterFromprefs() async {
+  //   await initPrefs();
+  //   selectedValue = prefs?.getInt(filter) ?? 0;
+  //   notifyListeners();
+  // }
 
   getNotes() {
     var hiveBox = Hive.box<Note>(noteBox);
@@ -98,12 +96,14 @@ class HomescreenViewModel extends BaseViewModel {
   sortByTitle() {
     notes.sort(
         ((a, b) => a.title!.toLowerCase().compareTo(b.title!.toLowerCase())));
+    // setFilter(0);
     notifyListeners();
   }
 
   sortByNote() {
     notes.sort(
         ((a, b) => a.desc!.toLowerCase().compareTo(b.desc!.toLowerCase())));
+    // setFilter(1);
     notifyListeners();
   }
 
@@ -122,12 +122,14 @@ class HomescreenViewModel extends BaseViewModel {
         String bDate = DateTime.tryParse(b.altDate ?? '').toString();
         return aDate.compareTo(bDate);
       });
+      // setFilter(2);
       notifyListeners();
     }
   }
 
   sortById() {
     notes.sort(((a, b) => a.id!.toLowerCase().compareTo(b.id!.toLowerCase())));
+    // setFilter(3);
     notifyListeners();
   }
 }

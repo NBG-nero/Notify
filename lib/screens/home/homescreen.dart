@@ -38,20 +38,24 @@ class _HomescreenState extends State<Homescreen> {
           return Scaffold(
             drawer: CustomDrawer(
               filterByTitle: () {
+                // model.setFilter(0);
                 model.sortByTitle();
-                model.setFilter(0);
+                
               },
               filterByNote: () {
+                //  model.setFilter(1);
                 model.sortByNote();
-                model.setFilter(1);
+               
               },
               filterByDate: () {
+                //  model.setFilter(2);
                 model.sortByDate();
-                model.setFilter(2);
+               
               },
               filterByID: () {
+                //  model.setFilter(3);
                 model.sortById();
-                model.setFilter(3);
+               
               },
               onDeleteAll: () {
                 model.deleteAll();
