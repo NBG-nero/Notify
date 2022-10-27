@@ -13,6 +13,7 @@ class GridNotesCard extends StatefulWidget {
   final GestureTapCallback? onDTap;
   final GestureTapCallback? onETap;
   final GestureTapCallback? onVTap;
+  final dynamic descCardHeight;
   const GridNotesCard({
     Key? key,
     required this.note,
@@ -20,6 +21,7 @@ class GridNotesCard extends StatefulWidget {
     this.onDTap,
     this.onETap,
     this.onVTap,
+    this.descCardHeight,
   }) : super(key: key);
 
   @override
@@ -50,7 +52,6 @@ class _GridNotesCardState extends State<GridNotesCard> {
                 children: [
                   Expanded(
                     child: Column(
-                      
                       children: [
                         Column(
                           children: [
@@ -63,7 +64,7 @@ class _GridNotesCardState extends State<GridNotesCard> {
                               height: 20.h,
                             ),
                             Container(
-                              height: 100.h,
+                              height: widget.descCardHeight,
                               child: SingleChildScrollView(
                                 child: Text(widget.note.desc ?? "Description",
                                     // overflow: TextOverflow.ellipsis,

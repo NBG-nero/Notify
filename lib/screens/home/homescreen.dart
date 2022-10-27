@@ -130,58 +130,30 @@ class _HomescreenState extends State<Homescreen> {
                                   mainAxisSpacing: 2.w,
                                   crossAxisSpacing: 2.w,
                                   children: [
-                                    StaggeredGridTile.count(
-                                      crossAxisCellCount: 1,
-                                      mainAxisCellCount: 1,
-                                      child: Tile(
-                                        index: 0,
-                                        model: model,
-                                      ),
-                                    ),
-                                    StaggeredGridTile.count(
-                                      crossAxisCellCount: 1,
-                                      mainAxisCellCount: 1.5,
-                                      child: Tile(
-                                        index: 1,
-                                        model: model,
-                                      ),
-                                    ), 
-                                     StaggeredGridTile.count(
-                                      crossAxisCellCount: 1,
-                                      mainAxisCellCount: 1,
-                                      child: Tile(
-                                        index: 2,
-                                        model: model,
-                                      ),
-                                    ), 
+                                    for (int i = 0;
+                                        i < model.notes.length;
+                                        i++,) ...[
+                                      // Note note =  model.notes[i];
                                       StaggeredGridTile.count(
-                                      crossAxisCellCount: 1,
-                                      mainAxisCellCount: 1.8,
-                                      child: Tile(
-                                        index: 3,
-                                        model: model,
+                                        crossAxisCellCount: 1,
+                                        // i.isEven &&// i % 3 == 0//     ? 2//     : i % 4 == 0 // ? 2//         : 1,
+                                        mainAxisCellCount:
+                                            i.isEven || i % 3 == 0
+                                                ?
+                                                // 1
+                                                (i.isOdd ? 1 : 2)
+                                                : 1.4,
+                                        child: Tile(
+                                            model: model,
+                                            index: i,
+                                            descHeight: i.isEven || i % 3 == 0
+                                                ? (i.isOdd ? 100.h : 320.h)
+                                                : 180.h),
                                       ),
-                                    ), 
-                                      StaggeredGridTile.count(
-                                      crossAxisCellCount: 1,
-                                      mainAxisCellCount: 2,
-                                      child: Tile(
-                                        index: 4,
-                                        model: model,
-                                      ),
-                                    ), 
-                                                           StaggeredGridTile.count(
-                                      crossAxisCellCount: 1,
-                                      mainAxisCellCount: 2,
-                                      child: Tile(
-                                        index: 5,
-                                        model: model,
-                                      ),
-                                    )
+                                    ],
                                   ],
                                 ),
                               )
-
                               // child: GridView.builder(
                               //     gridDelegate:
                               //         SliverGridDelegateWithFixedCrossAxisCount(
@@ -194,15 +166,10 @@ class _HomescreenState extends State<Homescreen> {
                               //       return GridNotesCard(
                               //         note: note,
                               //         onDTap: () {
-                              //           model.delNote(note.id!);
                               //         },
                               //         onVTap: () {
-                              //           AutoRouter.of(context)
-                              //               .push(ViewNotescreen(note: note));
                               //         },
                               //         onETap: () {
-                              //           AutoRouter.of(context)
-                              //               .push(EditNotescreen(note: note));
                               //         },
                               //       );
                               //     }),),
