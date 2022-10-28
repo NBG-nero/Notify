@@ -1,6 +1,4 @@
-
-
-
+import 'dart:ui';
 
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -26,7 +24,8 @@ class Note {
   bool? isEdited;
   @HiveField(7)
   String? altDate;
-
+  @HiveField(8)
+  Color? noteColor;
 
   Note({
     this.title,
@@ -37,7 +36,7 @@ class Note {
     this.updatedDate,
     this.isEdited,
     this.altDate,
-    
+     this.noteColor,
   });
   //  : dateCreated =dateCreated ?? DateTime.now();
 

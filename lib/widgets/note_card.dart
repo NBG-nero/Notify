@@ -47,6 +47,7 @@ class _NotesCardState extends State<NotesCard> {
         child: Material(
           elevation: 30,
           child: Container(
+            color:widget.note.noteColor,
             margin: const EdgeInsets.all(4),
             padding: const EdgeInsets.only(top:10,right:10,left:10),
             height: 180.h,
