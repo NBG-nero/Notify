@@ -8,6 +8,8 @@ class ViewNoteViewModel extends BaseViewModel {
   // void Function(Color)? callBackColorTapped;
   final check = const Icon(Icons.check);
   // List<Note> notes = <Note>[];
+  Color? selectedColor;
+  int? indexOfCurrentColor;
 
   List<Color?> colors = [
     const Color(0xffffffff), // classic white
@@ -23,25 +25,25 @@ class ViewNoteViewModel extends BaseViewModel {
     const Color(0xffe6c9a9), // light brown
     const Color(0xffe9eaee) // light gray
   ];
-  
-  Color? selectedColor;
 
-  int? indexOfCurrentColor;
-  // changeColor(colorSelected) {
-  //   note?.noteColor = colorSelected;
-  //   notifyListeners();
-  // }
+  changeColor() {
+    for (selectedColor in colors) {
+      var changedCol = colors.indexOf(selectedColor);
+      setSelectedColor(colors[changedCol]);
+    }
+    notifyListeners();
+  }
+
   setSelectedColor(valColor) {
     // colors[3] = valColor;
-    // valColor = noteColor;
     selectedColor = valColor;
     notifyListeners();
   }
 
   changeTappedColor(int indexofColor) {
-    // noteColor = colors[indexofColor];
+    // selectedColor = colors[indexofColor];
     indexOfCurrentColor = indexofColor;
-    setSelectedColor(colors[indexofColor]);
+    setSelectedColor(colors[indexOfCurrentColor!]);
     // callBackColorTapped!(colors[indexofColor]);
 
     notifyListeners();

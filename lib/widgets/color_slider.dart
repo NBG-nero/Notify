@@ -12,6 +12,7 @@ class ColorSlider extends StatefulWidget {
 
   final Color? sliderColor;
   final GestureTapCallback? onColorTapped;
+  final int index;
   // final Note? note;
   const ColorSlider({
     Key? key,
@@ -19,6 +20,7 @@ class ColorSlider extends StatefulWidget {
     // this.note,
     this.sliderColor,
     this.onColorTapped,
+    this.index = 0,
   }) : super(key: key);
 
   @override
@@ -28,6 +30,7 @@ class ColorSlider extends StatefulWidget {
 class _ColorSliderState extends State<ColorSlider> {
   final Color borderColor = const Color(0xffd3d3d3);
   final Color foregroundColor = const Color(0xff595959);
+  Color? col;
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +42,18 @@ class _ColorSliderState extends State<ColorSlider> {
           // widget.noteColor = v.noteColor;
 
           // v.indexOfCurrentColor = v.colors.indexOf(v.noteColor!);
-        
         },
         builder: (context, model, child) {
           return Container(
-            color: 
-            model.selectedColor,
+            color: model.selectedColor,
             // widget.sliderColor,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: model.colors.length,
                 itemBuilder: ((context, index) {
-                  // Color color = model.colors[index];
-
+                  Color? col = model.colors[index];
                   // children: List.generate(model.colors.length, (index) {
+
                   return Center(
                     child: Container(
                       height: 60.h,
@@ -60,8 +61,10 @@ class _ColorSliderState extends State<ColorSlider> {
                       // color: color,
                       child: InkWell(
                           onTap: () {
-                            model.changeTappedColor(index);
-                            // widget.onColorTapped!();
+                            widget.onColorTapped!();
+
+                            // model.changeTappedColor(index);
+                            // model.setSelectedColor(col);
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(left: 8.0, right: 8),
@@ -73,8 +76,8 @@ class _ColorSliderState extends State<ColorSlider> {
                                   color: borderColor, shape: BoxShape.circle),
                               child: CircleAvatar(
                                 foregroundColor: foregroundColor,
-                                backgroundColor: model.colors[index],
-                                child: model.checkOrNot(index),
+                                backgroundColor: col,
+                                // child: model.checkOrNot(index),
                               ),
                             ),
                           )),

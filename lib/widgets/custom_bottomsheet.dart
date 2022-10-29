@@ -27,8 +27,8 @@ class _NoteBottomSheetState extends State<NoteBottomSheet> {
         viewModelBuilder: () => ViewNoteViewModel(),
         onModelReady: (v) {
           v.setInitialised(true);
-
-          
+          // v.indexOfCurrentColor = v.colors.indexOf(v.noteColor!);
+          // v.indexOfCurrentColor = v.colors.indexOf(v.selectedColor);
         },
         builder: (context, model, child) {
           return Padding(
@@ -47,8 +47,12 @@ class _NoteBottomSheetState extends State<NoteBottomSheet> {
                       borderRadius: BorderRadius.circular(20),
                       child: ColorSlider(
                         sliderColor: model.selectedColor,
-                        // onColorTapped:
-                        //     model.changeTappedColor(model.indexOfCurrentColor!),
+                        onColorTapped: () {
+                          for (int i = 0; i < model.colors.length; i++) {
+                            // model.setSelectedColor(model.colors[i]);
+                            model.changeTappedColor(i);
+                          }
+                        },
                       ),
                     ),
                   ),

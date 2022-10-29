@@ -36,6 +36,7 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
           v.setInitialised(true);
           titleCtrl.text = widget.note!.title ?? " ";
           descCtrl.text = widget.note!.desc ?? "";
+          v.selectedColor = widget.note!.noteColor ?? Colors.white;
         },
         builder: (context, model, child) {
           return Scaffold(
@@ -61,7 +62,7 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
               child: SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: Material(
-                    // color: model.selectedColor ?? Colors.amber,
+                    color: model.selectedColor,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SingleChildScrollView(
@@ -163,15 +164,46 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
                 child: InkWell(
                   onTap: () {
                     showModalBottomSheet(
-                    
+                        backgroundColor: model.selectedColor,
                         context: context,
-                         shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(25)),
-                                ),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(25)),
+                        ),
                         builder: (BuildContext context) {
-                          return NoteBottomSheet( 
-                        bottomsheetColor: model.selectedColor,
+                          return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: model.colors.length,
+                            itemBuilder: ((context, index) {
+                              Color? color = model.colors[index];
+                              return Container(
+                                height: 60.h,
+                                color: model.selectedColor,
+                                child: InkWell(
+                                    onTap: () {
+                                      model.setSelectedColor(color);
+                                      Navigator.of(context).pop();
+                                      // model.changeTappedColor(index);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8.0, right: 8),
+                                      child: Container(
+                                        height: 30.h,
+                                        width: 30.w,
+                                        padding: const EdgeInsets.all(2),
+                                        decoration: const BoxDecoration(
+                                            color: Colors.white,
+                                            shape: BoxShape.circle),
+                                        child: CircleAvatar(
+                                          foregroundColor: Colors.grey,
+                                          backgroundColor: color,
+                                          // child: model.checkOrNot(index),
+                                        ),
+                                      ),
+                                    )),
+                              );
+                            }),
                           );
                         });
                   },
