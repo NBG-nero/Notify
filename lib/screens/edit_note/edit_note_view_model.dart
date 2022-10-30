@@ -1,10 +1,12 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notify/screens/view_note/view_note_view_model.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../models/models.dart';
 import '../../utilities/constants/constants.dart';
 
 class EditNoteViewModel extends BaseViewModel {
+  
   Note? note;
   bool? isEdited;
   setComplete(value) {
@@ -22,6 +24,7 @@ class EditNoteViewModel extends BaseViewModel {
 
   updateNote(String? id, String? title, String? desc, dynamic dateCreated) {
     Note updateNote = Note(
+    
         id: id,
         title: title,
         desc: desc,
