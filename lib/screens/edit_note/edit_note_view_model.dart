@@ -1,13 +1,13 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:notify/screens/view_note/view_note_view_model.dart';
-import 'package:stacked/stacked.dart';
+// import 'package:stacked/stacked.dart';
 
 import '../../models/models.dart';
 import '../../utilities/constants/constants.dart';
+import '../base_model.dart';
 
-class EditNoteViewModel extends BaseViewModel {
+class EditNoteViewModel extends BaseModel {
   
-  Note? note;
+  // Note? note;
   bool? isEdited;
   setComplete(value) {
     note?.isEdited = isEdited;
@@ -30,7 +30,9 @@ class EditNoteViewModel extends BaseViewModel {
         desc: desc,
         isEdited: true,
         dateCreated: dateCreated,
-        updatedDate: DateTime.now());
+        updatedDate: DateTime.now(), 
+        noteColor: selectedColor
+        );
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(updateNote.id, updateNote);
     // log(id!);

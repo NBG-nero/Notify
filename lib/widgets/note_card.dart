@@ -46,8 +46,9 @@ class _NotesCardState extends State<NotesCard> {
         borderRadius: BorderRadius.circular(20),
         child: Material(
           elevation: 30,
-          child: Container(
             color:widget.note.noteColor,
+
+          child: Container(
             margin: const EdgeInsets.all(4),
             padding: const EdgeInsets.only(top:10,right:10,left:10),
             height: 180.h,

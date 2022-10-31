@@ -2,14 +2,15 @@ import 'dart:developer';
 
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:stacked/stacked.dart';
+// import 'package:stacked/stacked.dart';
 
 import '../../models/models.dart';
 import '../../utilities/constants/constants.dart';
+import '../base_model.dart';
 
-class HomescreenViewModel extends BaseViewModel {
+class HomescreenViewModel extends BaseModel {
   HomescreenViewModel() {
     loadfromPrefs();
     // loadfilterFromprefs();
@@ -17,15 +18,12 @@ class HomescreenViewModel extends BaseViewModel {
 
   final String views = 'noteviews';
   List<Note> notes = <Note>[];
-  Note? note;
-  SharedPreferences? prefs;
+
   bool switchView = false;
   final String filter = 'notesfilter';
   int selectedValue = 0;
 
-  initPrefs() async {
-    prefs = await SharedPreferences.getInstance();
-  }
+ 
 
   setView(value) {
     switchView = value;

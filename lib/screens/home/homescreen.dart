@@ -32,6 +32,7 @@ class _HomescreenState extends State<Homescreen> {
         viewModelBuilder: () => HomescreenViewModel(),
         onModelReady: (h) {
           h.setInitialised(true);
+
           h.getNotes();
         },
         builder: (context, model, child) {
@@ -104,6 +105,7 @@ class _HomescreenState extends State<Homescreen> {
                             Note note = model.notes[index];
 
                             return NotesCard(
+                              
                               note: note,
                               onTap: () {},
                               onDTap: () {

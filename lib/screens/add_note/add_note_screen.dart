@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,6 +59,7 @@ class _AddNotescreenState extends State<AddNotescreen> {
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Material(
+                  color: model.selectedColor,
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Form(
@@ -110,6 +113,91 @@ class _AddNotescreenState extends State<AddNotescreen> {
               icon: Icon(
                 Icons.add,
                 size: 30.h,
+              ),
+            ),
+          bottomSheet: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+              child: Material(
+                elevation: 50,
+                child: InkWell(
+                  onTap: () {
+                    // setState(() {
+                      showModalBottomSheet(
+                          backgroundColor: model.selectedColor,
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.vertical(top: Radius.circular(25)),
+                          ),
+                          builder: (BuildContext context) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                  color: model.selectedColor,
+                                  borderRadius: const BorderRadius.vertical(
+                                      top: Radius.circular(25))),
+                              height: 150.h,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: model.colors.length,
+                                itemBuilder: ((context, index) {
+                                  Color? color = model.colors[index];
+                                  return Container(
+                                    height: 30.h,
+                                    // width:50.w,
+                                    child: ClipRRect 
+                                    (
+                                      borderRadius: BorderRadius.circular(25),
+                                      child: Material(
+                                        color:model.selectedColor,
+                                        child: InkWell(
+                                            onTap: () {
+                                              model.setSelectedColor(color);
+                                              Navigator.of(context).pop();
+                                              // model.changeTappedColor(index);
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8.0, right: 8),
+                                              child: Container(
+                                                height: 30.h,
+                                                width: 30.w,
+                                                padding: const EdgeInsets.all(2),
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.white,
+                                                    shape: BoxShape.circle),
+                                                child: CircleAvatar(
+                                                  foregroundColor: Colors.grey,
+                                                  backgroundColor: color,
+                                                  child: model.checkOrNot(color),
+                                                ),
+                                              ),
+                                            )),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                              ),
+                            );
+                          });
+                    // });
+                  },
+                  child: Container(
+                      height: 20.h,
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.blue,
+                      // widget.note!.noteColor,
+                      child: Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: SizedBox(
+                            height: 6.h,
+                            width: 60.w,
+                            child: Container(color: Colors.black),
+                          ),
+                        ),
+                      )),
+                ),
               ),
             ),
           );

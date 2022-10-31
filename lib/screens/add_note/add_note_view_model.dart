@@ -1,15 +1,16 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'package:stacked/stacked.dart';
+
 import 'package:uuid/uuid.dart';
 
 import '../../models/models.dart';
 import '../../utilities/constants/constants.dart';
+import '../base_model.dart';
 
-class AddNoteViewModel extends BaseViewModel {
+class AddNoteViewModel extends BaseModel {
   var uuid = const Uuid();
   bool? complete = false;
-  Note? note;
+
 
   setComplete(value) {
     note?.complete = complete;
@@ -25,7 +26,8 @@ class AddNoteViewModel extends BaseViewModel {
       id: uuid.v4(),
       isEdited: false,
       dateCreated: DateTime.now(),
-      updatedDate: DateTime.now()
+      updatedDate: DateTime.now(), 
+      noteColor: selectedColor
     );
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(note.id, note);

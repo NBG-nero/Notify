@@ -1,16 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked.dart';
 
 import '../models/models.dart';
 
-class BaseModel extends BaseViewModel { 
+class BaseModel extends BaseViewModel {
+  BaseModel() {
+    loadNotecolorFromprefs();
+  }
 
-   Note? note;
+  SharedPreferences? prefs;
+  final String colorR = 'notecolor';
+
+  Note? note;
   // void Function(Color)? callBackColorTapped;
   final check = const Icon(Icons.check);
-  // List<Note> notes = <Note>[];
+  
   Color? selectedColor;
   int? indexOfCurrentColor;
+
+  initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+
+  saveNotecolorToprefs() async {
+    await initPrefs();
+    prefs?.setString(colorR, selectedColor.toString());
+  }
+
+  loadNotecolorFromprefs() async {
+    await initPrefs();
+    prefs?.getString(colorR);
+    notifyListeners();
+  }
 
   List<Color?> colors = [
     const Color(0xffffffff), // classic white
@@ -38,6 +60,7 @@ class BaseModel extends BaseViewModel {
   setSelectedColor(valColor) {
     // colors[3] = valColor;
     selectedColor = valColor;
+    saveNotecolorToprefs();
     notifyListeners();
   }
 
@@ -50,10 +73,16 @@ class BaseModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Widget checkOrNot(int index) {
-    if (indexOfCurrentColor == index) {
+  Widget checkOrNot(val) {
+    if(selectedColor ==val) { 
       return check;
     }
     return Container();
+  //   if (indexOfCurrentColor == index) {
+  //     return check;
+  //   }
+  //   return Container();
+
   }
+
 }
