@@ -116,8 +116,8 @@ class _EditNotescreenState extends State<EditNotescreen> {
                   )),
             ),
             bottomSheet: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+              // borderRadius: const BorderRadius.only(
+              //     topLeft: Radius.circular(10), topRight: Radius.circular(10)),
               child: Material(
                 elevation: 50,
                 child: InkWell(
@@ -142,37 +142,39 @@ class _EditNotescreenState extends State<EditNotescreen> {
                                 itemCount: model.colors.length,
                                 itemBuilder: ((context, index) {
                                   Color? color = model.colors[index];
-                                  return Container(
-                                    height: 30.h,
-                                    // width:40.w,
-                                    child: ClipRRect 
-                                    (
-                                      borderRadius: BorderRadius.circular(25),
-                                      child: Material(
-                                        color:model.selectedColor,
-                                        child: InkWell(
-                                            onTap: () {
-                                              model.setSelectedColor(color);
-                                              Navigator.of(context).pop();
-                                              // model.changeTappedColor(index);
-                                            },
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 8.0, right: 8),
-                                              child: Container(
-                                                height: 30.h,
-                                                width: 30.w,
-                                                padding: const EdgeInsets.all(2),
-                                                decoration: const BoxDecoration(
-                                                    color: Colors.white,
-                                                    shape: BoxShape.circle),
-                                                child: CircleAvatar(
-                                                  foregroundColor: Colors.grey,
-                                                  backgroundColor: color,
-                                                  child: model.checkOrNot(color),
+                                  return Center(
+                                    child: Container(
+                                      height: 30.h,
+                                      // width:40.w,
+                                      child: ClipRRect 
+                                      (
+                                        borderRadius: BorderRadius.circular(25),
+                                        child: Material(
+                                          color:model.selectedColor,
+                                          child: InkWell(
+                                              onTap: () {
+                                                model.setSelectedColor(color);
+                                                Navigator.of(context).pop();
+                                                // model.changeTappedColor(index);
+                                              },
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 8.0, right: 8),
+                                                child: Container(
+                                                  height: 30.h,
+                                                  width: 30.w,
+                                                  padding: const EdgeInsets.all(2),
+                                                  decoration: const BoxDecoration(
+                                                      color: Colors.white,
+                                                      shape: BoxShape.circle),
+                                                  child: CircleAvatar(
+                                                    foregroundColor: Colors.grey,
+                                                    backgroundColor: color,
+                                                    child: model.checkOrNot(color),
+                                                  ),
                                                 ),
-                                              ),
-                                            )),
+                                              )),
+                                        ),
                                       ),
                                     ),
                                   );

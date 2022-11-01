@@ -6,7 +6,11 @@ import '../../utilities/constants/constants.dart';
 import '../base_model.dart';
 
 class EditNoteViewModel extends BaseModel {
-  
+ 
+  EditNoteViewModel() {
+    loadNotecolorFromprefs();
+  }
+
   // Note? note;
   bool? isEdited;
   setComplete(value) {
@@ -24,15 +28,13 @@ class EditNoteViewModel extends BaseModel {
 
   updateNote(String? id, String? title, String? desc, dynamic dateCreated) {
     Note updateNote = Note(
-    
         id: id,
         title: title,
         desc: desc,
         isEdited: true,
         dateCreated: dateCreated,
-        updatedDate: DateTime.now(), 
-        noteColor: selectedColor
-        );
+        updatedDate: DateTime.now(),
+        noteColor: selectedColor);
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(updateNote.id, updateNote);
     // log(id!);

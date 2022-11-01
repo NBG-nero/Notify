@@ -115,41 +115,39 @@ class _AddNotescreenState extends State<AddNotescreen> {
                 size: 30.h,
               ),
             ),
-          bottomSheet: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+            bottomSheet: ClipRRect(
+              // borderRadius: BorderRadius.only(topLeft: Radius.circular(25)),
               child: Material(
-                elevation: 50,
                 child: InkWell(
                   onTap: () {
                     // setState(() {
-                      showModalBottomSheet(
-                          backgroundColor: model.selectedColor,
-                          context: context,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.vertical(top: Radius.circular(25)),
-                          ),
-                          builder: (BuildContext context) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                  color: model.selectedColor,
-                                  borderRadius: const BorderRadius.vertical(
-                                      top: Radius.circular(25))),
-                              height: 150.h,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: model.colors.length,
-                                itemBuilder: ((context, index) {
-                                  Color? color = model.colors[index];
-                                  return Container(
+                    showModalBottomSheet(
+                        backgroundColor: model.selectedColor,
+                        context: context,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(25)),
+                        ),
+                        builder: (BuildContext context) {
+                          return Container(
+                            decoration: BoxDecoration(
+                                color: model.selectedColor,
+                                borderRadius: const BorderRadius.vertical(
+                                    top: Radius.circular(25))),
+                            height: 150.h,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: model.colors.length,
+                              itemBuilder: ((context, index) {
+                                Color? color = model.colors[index];
+                                return Center(
+                                  child: Container(
                                     height: 30.h,
                                     // width:50.w,
-                                    child: ClipRRect 
-                                    (
+                                    child: ClipRRect(
                                       borderRadius: BorderRadius.circular(25),
                                       child: Material(
-                                        color:model.selectedColor,
+                                        color: model.selectedColor,
                                         child: InkWell(
                                             onTap: () {
                                               model.setSelectedColor(color);
@@ -160,32 +158,38 @@ class _AddNotescreenState extends State<AddNotescreen> {
                                               padding: const EdgeInsets.only(
                                                   left: 8.0, right: 8),
                                               child: Container(
-                                                height: 30.h,
-                                                width: 30.w,
-                                                padding: const EdgeInsets.all(2),
+                                                height: 34.h,
+                                                width: 34.w,
+                                                padding:
+                                                    const EdgeInsets.all(2),
                                                 decoration: const BoxDecoration(
                                                     color: Colors.white,
                                                     shape: BoxShape.circle),
                                                 child: CircleAvatar(
                                                   foregroundColor: Colors.grey,
                                                   backgroundColor: color,
-                                                  child: model.checkOrNot(color),
+                                                  child:
+                                                      model.checkOrNot(color),
                                                 ),
                                               ),
                                             )),
                                       ),
                                     ),
-                                  );
-                                }),
-                              ),
-                            );
-                          });
+                                  ),
+                                );
+                              }),
+                            ),
+                          );
+                        });
                     // });
                   },
                   child: Container(
                       height: 20.h,
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.blue,
+                      decoration: const BoxDecoration(
+                        color: Colors.blue,
+                        // borderRadius: BorderRadius.only(topLeft: Radius.circular(25))
+                      ),
                       // widget.note!.noteColor,
                       child: Center(
                         child: ClipRRect(

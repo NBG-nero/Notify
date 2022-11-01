@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked.dart';
 
@@ -14,23 +17,28 @@ class BaseModel extends BaseViewModel {
 
   Note? note;
   // void Function(Color)? callBackColorTapped;
-  final check = const Icon(Icons.check);
-  
+  final check =  Icon(Icons.check,size: 20.h,);
+
   Color? selectedColor;
   int? indexOfCurrentColor;
-
+  
   initPrefs() async {
     prefs = await SharedPreferences.getInstance();
   }
 
   saveNotecolorToprefs() async {
     await initPrefs();
-    prefs?.setString(colorR, selectedColor.toString());
+    var strSelected = selectedColor.toString();
+
+    prefs?.setString(colorR, strSelected);
+    log(selectedColor.toString());
   }
 
   loadNotecolorFromprefs() async {
     await initPrefs();
-    prefs?.getString(colorR);
+    String? strSelected = selectedColor.toString();
+
+    strSelected = prefs?.getString(colorR);
     notifyListeners();
   }
 
@@ -74,15 +82,13 @@ class BaseModel extends BaseViewModel {
   }
 
   Widget checkOrNot(val) {
-    if(selectedColor ==val) { 
+    if (selectedColor == val) {
       return check;
     }
     return Container();
-  //   if (indexOfCurrentColor == index) {
-  //     return check;
-  //   }
-  //   return Container();
-
+    //   if (indexOfCurrentColor == index) {
+    //     return check;
+    //   }
+    //   return Container();
   }
-
 }
