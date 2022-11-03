@@ -11,6 +11,9 @@ class AddNoteViewModel extends BaseModel {
   var uuid = const Uuid();
   bool? complete = false;
 
+AddNoteViewModel(){ 
+  loadNotecolorFromprefs();
+}
 
   setComplete(value) {
     note?.complete = complete;
