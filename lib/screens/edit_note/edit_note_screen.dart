@@ -4,9 +4,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notify/screens/edit_note/edit_note_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../models/models.dart';
+import '../../providers/theme_notifier.dart';
 import '../../routes/router.gr.dart';
 import '../../utilities/constants/constants.dart';
 import '../../widgets/widgets.dart';
@@ -38,6 +40,8 @@ class _EditNotescreenState extends State<EditNotescreen> {
           e.selectedColor = widget.note!.noteColor;
         },
         builder: (context, model, child) {
+          final theme = Provider.of<ThemeNotifier>(context);
+
           return Scaffold(
             appBar: AppBar(
                 title: Text(
@@ -106,7 +110,7 @@ class _EditNotescreenState extends State<EditNotescreen> {
                                     const Homescreen(),
                                     predicate: (route) => false);
                               },
-                              color: NColors.primaryColor,
+                              color:theme.darkTheme ? NColors.primaryColor: Colors.blueAccent,
                               buttontext: 'Save',
                             )
                           ],
@@ -116,72 +120,72 @@ class _EditNotescreenState extends State<EditNotescreen> {
                   )),
             ),
             bottomSheet: ClipRRect(
-              // borderRadius: const BorderRadius.only(
-              //     topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+            
               child: Material(
                 elevation: 50,
                 child: InkWell(
                   onTap: () {
                     // setState(() {
-                      showModalBottomSheet(
-                          backgroundColor: model.selectedColor,
-                          context: context,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.vertical(top: Radius.circular(25)),
-                          ),
-                          builder: (BuildContext context) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                  color: model.selectedColor,
-                                  borderRadius: const BorderRadius.vertical(
-                                      top: Radius.circular(25))),
-                              height: 150.h,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: model.colors.length,
-                                itemBuilder: ((context, index) {
-                                  Color? color = model.colors[index];
-                                  return Center(
-                                    child: Container(
-                                      height: 30.h,
-                                      // width:40.w,
-                                      child: ClipRRect 
-                                      (
-                                        borderRadius: BorderRadius.circular(25),
-                                        child: Material(
-                                          color:model.selectedColor,
-                                          child: InkWell(
-                                              onTap: () {
-                                                model.setSelectedColor(color);
-                                                Navigator.of(context).pop();
-                                                // model.changeTappedColor(index);
-                                              },
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8.0, right: 8),
-                                                child: Container(
-                                                  height: 30.h,
-                                                  width: 30.w,
-                                                  padding: const EdgeInsets.all(2),
-                                                  decoration: const BoxDecoration(
-                                                      color: Colors.white,
-                                                      shape: BoxShape.circle),
-                                                  child: CircleAvatar(
-                                                    foregroundColor: Colors.grey,
-                                                    backgroundColor: color,
-                                                    child: model.checkOrNot(color),
-                                                  ),
+                    showModalBottomSheet(
+                        backgroundColor: model.selectedColor,
+                        context: context,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(25)),
+                        ),
+                        builder: (BuildContext context) {
+                          return Container(
+                            decoration: BoxDecoration(
+                                color: model.selectedColor,
+                                borderRadius: const BorderRadius.vertical(
+                                    top: Radius.circular(25))),
+                            height: 150.h,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: model.colors.length,
+                              itemBuilder: ((context, index) {
+                                Color? color = model.colors[index];
+                                return Center(
+                                  child: Container(
+                                    height: 30.h,
+                                    // width:40.w,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(25),
+                                      child: Material(
+                                        color: model.selectedColor,
+                                        child: InkWell(
+                                            onTap: () {
+                                              model.setSelectedColor(color);
+                                              Navigator.of(context).pop();
+                                              // model.changeTappedColor(index);
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8.0, right: 8),
+                                              child: Container(
+                                                height: 30.h,
+                                                width: 30.w,
+                                                padding:
+                                                    const EdgeInsets.all(2),
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.white,
+                                                    shape: BoxShape.circle),
+                                                child: CircleAvatar(
+                                                  foregroundColor: Colors.grey,
+                                                  backgroundColor: color,
+                                                  child:
+                                                      model.checkOrNot(color),
                                                 ),
-                                              )),
-                                        ),
+                                              ),
+                                            )),
                                       ),
                                     ),
-                                  );
-                                }),
-                              ),
-                            );
-                          });
+                                  ),
+                                );
+                              }),
+                            ),
+                          );
+                        });
                     // });
                   },
                   child: Container(
