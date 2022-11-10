@@ -37,13 +37,13 @@ class _AddNotescreenState extends State<AddNotescreen>
         viewModelBuilder: () => AddNoteViewModel(),
         onModelReady: (a) {
           a.setInitialised(true);
-          animeCtrl = AnimationController(
-              vsync: this, duration: const Duration(milliseconds: 400));
-          anime = IntTween(begin: 0, end: 255).animate(animeCtrl!);
-          anime?.addListener(() {
-            setState(() {});
-          });
-          animeCtrl!.forward();
+          // animeCtrl = AnimationController(
+          //     vsync: this, duration: const Duration(milliseconds: 400));
+          // anime = IntTween(begin: 0, end: 255).animate(animeCtrl!);
+          // anime?.addListener(() {
+          //   setState(() {});
+          // });
+          // animeCtrl!.forward();
         },
         builder: (context, model, child) {
           return Scaffold(
