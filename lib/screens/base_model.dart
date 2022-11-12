@@ -8,22 +8,25 @@ import 'package:stacked/stacked.dart';
 import '../models/models.dart';
 
 class BaseModel extends BaseViewModel {
-  BaseModel() {
-    loadNotecolorFromprefs();
-  }
-
   SharedPreferences? prefs;
   final String colorR = 'notecolor';
 
   Note? note;
   // void Function(Color)? callBackColorTapped;
-  final check =  Icon(Icons.check,size: 20.h,);
+  final check = Icon(
+    Icons.check,
+    size: 20.h,
+  );
 
   Color? selectedColor;
   int? indexOfCurrentColor;
-  
+
   initPrefs() async {
     prefs = await SharedPreferences.getInstance();
+  }
+
+  BaseModel() {
+    loadNotecolorFromprefs();
   }
 
   saveNotecolorToprefs() async {
@@ -39,6 +42,7 @@ class BaseModel extends BaseViewModel {
     String? strSelected = selectedColor.toString();
 
     strSelected = prefs?.getString(colorR);
+    log(strSelected.toString());
     notifyListeners();
   }
 

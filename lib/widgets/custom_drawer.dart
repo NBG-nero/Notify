@@ -33,6 +33,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeNotifier>(context);
     return Drawer(
+      width: MediaQuery.of(context).size.width * 0.7,
       child: ListView(
         // padding: EdgeInsets.zero,
         children: [
