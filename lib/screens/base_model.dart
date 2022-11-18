@@ -28,20 +28,22 @@ class BaseModel extends BaseViewModel {
   BaseModel() {
     loadNotecolorFromprefs();
   }
+  int? strSelected;
+  
 
   saveNotecolorToprefs() async {
     await initPrefs();
-    var strSelected = selectedColor.toString();
+    int? strSelected = selectedColor!.value;
 
-    prefs?.setString(colorR, strSelected);
-    log(selectedColor.toString());
+    prefs?.setInt(colorR, strSelected);
+    log(strSelected.toString());
   }
 
   loadNotecolorFromprefs() async {
     await initPrefs();
-    String? strSelected = selectedColor.toString();
+    // String? strSelected = selectedColor.toString();
 
-    strSelected = prefs?.getString(colorR);
+    strSelected = prefs?.getInt(colorR);
     log(strSelected.toString());
     notifyListeners();
   }

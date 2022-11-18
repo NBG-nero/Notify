@@ -35,7 +35,7 @@ class _AddNotescreenState extends State<AddNotescreen>
         viewModelBuilder: () => AddNoteViewModel(),
         onModelReady: (a) {
           a.setInitialised(true);
-  
+          a.loadNotecolorFromprefs();
         },
         builder: (context, model, child) {
           return Scaffold(
@@ -60,7 +60,6 @@ class _AddNotescreenState extends State<AddNotescreen>
                     child: GestureDetector(
                         onTap: () {
                           print(model.selectedColor.toString());
-      
 
                           print('color sheet');
                           showModalBottomSheet(
@@ -83,7 +82,7 @@ class _AddNotescreenState extends State<AddNotescreen>
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Material(
-                  color: model.selectedColor,
+                  color: Color(model.strSelected ?? 0Xfffffff),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Form(
@@ -139,7 +138,6 @@ class _AddNotescreenState extends State<AddNotescreen>
                 size: 30.h,
               ),
             ),
-           
           );
         });
   }
