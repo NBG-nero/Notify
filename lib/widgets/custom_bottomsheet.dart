@@ -6,6 +6,8 @@ import 'package:stacked/stacked.dart';
 
 // import 'package:notify/screens/add_note/add_note_view_model.dart';
 
+import '../locator.dart';
+import '../screens/add_note/add_note_view_model.dart';
 import '../screens/base_model.dart';
 
 class NbottomSheet extends StatelessWidget {
@@ -16,9 +18,10 @@ class NbottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<BaseModel>.reactive(
-        viewModelBuilder: () => BaseModel(),
+        disposeViewModel: false,
+        viewModelBuilder: () => locator<AddNoteViewModel>(),
         onModelReady: (b) {
-          b.setInitialised(true);
+          // b.setInitialised(true);
         },
         builder: (context, model, child) {
           return Container(
@@ -41,8 +44,8 @@ class NbottomSheet extends StatelessWidget {
                                 color: model.selectedColor,
                                 child: InkWell(
                                     onTap: () {
-                                      model.setSelectedColor(color);
-                                      
+                                      // model.setSelectedColor(color);
+                                      model.setColor(color!);
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.only(

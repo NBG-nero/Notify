@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notify/locator.dart';
 import 'package:notify/providers/theme_notifier.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'models/models.dart';
 import 'routes/router.gr.dart' as gr;
+import 'screens/base_model.dart';
 import 'utilities/constants/constants.dart';
 import 'utilities/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
+  setUpLocator();
   final appDocDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocDir.path);
   Hive.registerAdapter(NoteAdapter());
@@ -26,7 +29,10 @@ class Notify extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [ChangeNotifierProvider(create: (_) => ThemeNotifier())],
+        providers: [
+          ChangeNotifierProvider(create: (_) => ThemeNotifier()),
+          // ChangeNotifierProvider(create: (_) => locator<BaseModel>())
+        ],
         child: ScreenUtilInit(
             designSize: const Size(428, 926),
             minTextAdapt: true,

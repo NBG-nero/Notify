@@ -33,7 +33,7 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
     return ViewModelBuilder<ViewNoteViewModel>.reactive(
         viewModelBuilder: () => ViewNoteViewModel(),
         onModelReady: (v) {
-          v.setInitialised(true);
+          // v.setInitialised(true);
           titleCtrl.text = widget.note!.title ?? " ";
           descCtrl.text = widget.note!.desc ?? "";
           v.selectedColor = widget.note!.noteColor;
@@ -156,9 +156,6 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
                     ),
                   )),
             ),
-            
-
-
           );
         });
   }

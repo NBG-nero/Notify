@@ -4,8 +4,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notify/screens/add_note/add_note_view_model.dart';
+import 'package:notify/screens/base_model.dart';
+// import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../locator.dart';
 import '../../models/models.dart';
 import '../../routes/router.gr.dart';
 import '../../utilities/constants/constants.dart';
@@ -32,13 +35,14 @@ class _AddNotescreenState extends State<AddNotescreen>
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AddNoteViewModel>.reactive(
-        viewModelBuilder: () => AddNoteViewModel(),
+        viewModelBuilder: () => locator<AddNoteViewModel>(),
         onModelReady: (a) {
-          a.setInitialised(true);
+          // a.setInitialised(true);
           a.loadNotecolorFromprefs();
         },
         builder: (context, model, child) {
           return Scaffold(
+            // backgroundColor: locator<BaseModel>().selectedColor,
             appBar: AppBar(
                 title: Text(
                   'Add Note',
@@ -59,7 +63,8 @@ class _AddNotescreenState extends State<AddNotescreen>
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
                         onTap: () {
-                          print(model.selectedColor.toString());
+                          // print(model.selectedColor.toString());
+                          // locator<BaseModel>().selectedColor;
 
                           print('color sheet');
                           showModalBottomSheet(
@@ -77,12 +82,18 @@ class _AddNotescreenState extends State<AddNotescreen>
                 ],
                 centerTitle: false,
                 elevation: 10,
-                backgroundColor: NColors.primaryColor.withOpacity(0.8)),
+                backgroundColor: NColors.primaryColor.withOpacity(0.8)
+
+                ///this its where you should Look
+                ///i changed your basemodel to a class that extends changenotifi,
+                // backgroundColor: bm.selectedColor
+                ),
             body: SingleChildScrollView(
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Material(
-                  color: Color(model.strSelected ?? 0Xfffffff),
+                  color: model.selectedColor,
+                  //  Color(model.strSelected ?? 0Xfffffff),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Form(
@@ -120,6 +131,7 @@ class _AddNotescreenState extends State<AddNotescreen>
               ),
             ),
             floatingActionButton: FloatingActionButton.extended(
+              backgroundColor: locator<BaseModel>().selectedColor,
               tooltip: 'Add Note',
               label: Text('Add Note',
                   style: Theme.of(context)

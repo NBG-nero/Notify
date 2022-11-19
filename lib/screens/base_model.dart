@@ -10,16 +10,15 @@ import '../models/models.dart';
 class BaseModel extends BaseViewModel {
   SharedPreferences? prefs;
   final String colorR = 'notecolor';
-
+  int? strSelected;
   Note? note;
+  Color? selectedColor;
+  int? indexOfCurrentColor;
   // void Function(Color)? callBackColorTapped;
   final check = Icon(
     Icons.check,
     size: 20.h,
   );
-
-  Color? selectedColor;
-  int? indexOfCurrentColor;
 
   initPrefs() async {
     prefs = await SharedPreferences.getInstance();
@@ -28,8 +27,6 @@ class BaseModel extends BaseViewModel {
   BaseModel() {
     loadNotecolorFromprefs();
   }
-  int? strSelected;
-  
 
   saveNotecolorToprefs() async {
     await initPrefs();
@@ -76,6 +73,12 @@ class BaseModel extends BaseViewModel {
     selectedColor = valColor;
     saveNotecolorToprefs();
     notifyListeners();
+  }
+
+  setColor(Color newColor) {
+    selectedColor = newColor;
+    notifyListeners();
+    log(selectedColor.toString());
   }
 
   changeTappedColor(int indexofColor) {

@@ -31,7 +31,7 @@ class _HomescreenState extends State<Homescreen> {
     return ViewModelBuilder<HomescreenViewModel>.reactive(
         viewModelBuilder: () => HomescreenViewModel(),
         onModelReady: (h) {
-          h.setInitialised(true);
+          // h.setInitialised(true);
 
           h.getNotes();
         },
@@ -41,22 +41,18 @@ class _HomescreenState extends State<Homescreen> {
               filterByTitle: () {
                 // model.setFilter(0);
                 model.sortByTitle();
-                
               },
               filterByNote: () {
                 //  model.setFilter(1);
                 model.sortByNote();
-               
               },
               filterByDate: () {
                 //  model.setFilter(2);
                 model.sortByDate();
-               
               },
               filterByID: () {
                 //  model.setFilter(3);
                 model.sortById();
-               
               },
               onDeleteAll: () {
                 model.deleteAll();
@@ -105,7 +101,6 @@ class _HomescreenState extends State<Homescreen> {
                             Note note = model.notes[index];
 
                             return NotesCard(
-                              
                               note: note,
                               onTap: () {},
                               onDTap: () {

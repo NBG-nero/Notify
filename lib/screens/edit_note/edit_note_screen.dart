@@ -34,7 +34,7 @@ class _EditNotescreenState extends State<EditNotescreen> {
     return ViewModelBuilder<EditNoteViewModel>.reactive(
         viewModelBuilder: () => EditNoteViewModel(),
         onModelReady: (e) {
-          e.setInitialised(true);
+          // e.setInitialised(true);
           titleCtrl.text = widget.note!.title ?? " ";
           descCtrl.text = widget.note!.desc ?? "";
           e.selectedColor = widget.note!.noteColor;
