@@ -31,7 +31,7 @@ class _HomescreenState extends State<Homescreen> {
     return ViewModelBuilder<HomescreenViewModel>.reactive(
         viewModelBuilder: () => HomescreenViewModel(),
         onModelReady: (h) {
-          // h.setInitialised(true);
+          h.setInitialised(true);
 
           h.getNotes();
         },

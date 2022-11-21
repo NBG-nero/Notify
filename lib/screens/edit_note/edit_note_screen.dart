@@ -3,6 +3,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notify/providers/providers.dart';
 import 'package:notify/screens/edit_note/edit_note_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
@@ -31,13 +32,15 @@ class _EditNotescreenState extends State<EditNotescreen> {
   TextEditingController descCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final colorNotifier = Provider.of<ColorNotifier>(context);
+
     return ViewModelBuilder<EditNoteViewModel>.reactive(
         viewModelBuilder: () => EditNoteViewModel(),
         onModelReady: (e) {
           // e.setInitialised(true);
           titleCtrl.text = widget.note!.title ?? " ";
           descCtrl.text = widget.note!.desc ?? "";
-          e.selectedColor = widget.note!.noteColor;
+          colorNotifier.selectedColor = widget.note!.noteColor;
         },
         builder: (context, model, child) {
           final theme = Provider.of<ThemeNotifier>(context);
@@ -65,7 +68,7 @@ class _EditNotescreenState extends State<EditNotescreen> {
               child: SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: Material(
-                    color: model.selectedColor,
+                    color: colorNotifier.selectedColor,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SingleChildScrollView(
@@ -110,7 +113,9 @@ class _EditNotescreenState extends State<EditNotescreen> {
                                     const Homescreen(),
                                     predicate: (route) => false);
                               },
-                              color:theme.darkTheme ? NColors.primaryColor: Colors.blueAccent,
+                              color: theme.darkTheme
+                                  ? NColors.primaryColor
+                                  : Colors.blueAccent,
                               buttontext: 'Save',
                             )
                           ],
@@ -119,93 +124,92 @@ class _EditNotescreenState extends State<EditNotescreen> {
                     ),
                   )),
             ),
-            bottomSheet: ClipRRect(
-            
-              child: Material(
-                elevation: 50,
-                child: InkWell(
-                  onTap: () {
-                    // setState(() {
-                    showModalBottomSheet(
-                        backgroundColor: model.selectedColor,
-                        context: context,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(25)),
-                        ),
-                        builder: (BuildContext context) {
-                          return Container(
-                            decoration: BoxDecoration(
-                                color: model.selectedColor,
-                                borderRadius: const BorderRadius.vertical(
-                                    top: Radius.circular(25))),
-                            height: 150.h,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: model.colors.length,
-                              itemBuilder: ((context, index) {
-                                Color? color = model.colors[index];
-                                return Center(
-                                  child: Container(
-                                    height: 30.h,
-                                    // width:40.w,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(25),
-                                      child: Material(
-                                        color: model.selectedColor,
-                                        child: InkWell(
-                                            onTap: () {
-                                              model.setSelectedColor(color);
-                                              Navigator.of(context).pop();
-                                              // model.changeTappedColor(index);
-                                            },
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 8.0, right: 8),
-                                              child: Container(
-                                                height: 30.h,
-                                                width: 30.w,
-                                                padding:
-                                                    const EdgeInsets.all(2),
-                                                decoration: const BoxDecoration(
-                                                    color: Colors.white,
-                                                    shape: BoxShape.circle),
-                                                child: CircleAvatar(
-                                                  foregroundColor: Colors.grey,
-                                                  backgroundColor: color,
-                                                  child:
-                                                      model.checkOrNot(color),
-                                                ),
-                                              ),
-                                            )),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }),
-                            ),
-                          );
-                        });
-                    // });
-                  },
-                  child: Container(
-                      height: 20.h,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.blue,
-                      // widget.note!.noteColor,
-                      child: Center(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: SizedBox(
-                            height: 6.h,
-                            width: 60.w,
-                            child: Container(color: Colors.black),
-                          ),
-                        ),
-                      )),
-                ),
-              ),
-            ),
+            // bottomSheet: ClipRRect(
+            //   child: Material(
+            //     elevation: 50,
+            //     child: InkWell(
+            //       onTap: () {
+            //         // setState(() {
+            //         showModalBottomSheet(
+            //             backgroundColor: model.selectedColor,
+            //             context: context,
+            //             shape: const RoundedRectangleBorder(
+            //               borderRadius:
+            //                   BorderRadius.vertical(top: Radius.circular(25)),
+            //             ),
+            //             builder: (BuildContext context) {
+            //               return Container(
+            //                 decoration: BoxDecoration(
+            //                     color: model.selectedColor,
+            //                     borderRadius: const BorderRadius.vertical(
+            //                         top: Radius.circular(25))),
+            //                 height: 150.h,
+            //                 child: ListView.builder(
+            //                   scrollDirection: Axis.horizontal,
+            //                   itemCount: model.colors.length,
+            //                   itemBuilder: ((context, index) {
+            //                     Color? color = model.colors[index];
+            //                     return Center(
+            //                       child: Container(
+            //                         height: 30.h,
+            //                         // width:40.w,
+            //                         child: ClipRRect(
+            //                           borderRadius: BorderRadius.circular(25),
+            //                           child: Material(
+            //                             color: model.selectedColor,
+            //                             child: InkWell(
+            //                                 onTap: () {
+            //                                   model.setSelectedColor(color);
+            //                                   Navigator.of(context).pop();
+            //                                   // model.changeTappedColor(index);
+            //                                 },
+            //                                 child: Padding(
+            //                                   padding: const EdgeInsets.only(
+            //                                       left: 8.0, right: 8),
+            //                                   child: Container(
+            //                                     height: 30.h,
+            //                                     width: 30.w,
+            //                                     padding:
+            //                                         const EdgeInsets.all(2),
+            //                                     decoration: const BoxDecoration(
+            //                                         color: Colors.white,
+            //                                         shape: BoxShape.circle),
+            //                                     child: CircleAvatar(
+            //                                       foregroundColor: Colors.grey,
+            //                                       backgroundColor: color,
+            //                                       child:
+            //                                           model.checkOrNot(color),
+            //                                     ),
+            //                                   ),
+            //                                 )),
+            //                           ),
+            //                         ),
+            //                       ),
+            //                     );
+            //                   }),
+            //                 ),
+            //               );
+            //             });
+            //         // });
+            //       },
+            //       child: Container(
+            //           height: 20.h,
+            //           width: MediaQuery.of(context).size.width,
+            //           color: Colors.blue,
+            //           // widget.note!.noteColor,
+            //           child: Center(
+            //             child: ClipRRect(
+            //               borderRadius: BorderRadius.circular(10),
+            //               child: SizedBox(
+            //                 height: 6.h,
+            //                 width: 60.w,
+            //                 child: Container(color: Colors.black),
+            //               ),
+            //             ),
+            //           )),
+            //     ),
+            //   ),
+            // ),
           );
         });
   }

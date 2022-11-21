@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notify/screens/view_note/view_note_view_model.dart';
+import 'package:provider/provider.dart';
 // import 'package:notify/widgets/custom_bottomsheet.dart';
 // import 'package:notify/utilities/theme.dart';
 // import 'package:notify/widgets/custom_textfield.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../models/models.dart';
+import '../../providers/providers.dart';
 import '../../utilities/constants/constants.dart';
 
 class ViewNotescreen extends StatefulWidget {
@@ -30,13 +32,15 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colorNotifier = Provider.of<ColorNotifier>(context);
+
     return ViewModelBuilder<ViewNoteViewModel>.reactive(
         viewModelBuilder: () => ViewNoteViewModel(),
         onModelReady: (v) {
           // v.setInitialised(true);
           titleCtrl.text = widget.note!.title ?? " ";
           descCtrl.text = widget.note!.desc ?? "";
-          v.selectedColor = widget.note!.noteColor;
+          colorNotifier.selectedColor = widget.note!.noteColor;
         },
         builder: (context, model, child) {
           return Scaffold(
@@ -62,7 +66,7 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
               child: SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: Material(
-                    color: model.selectedColor,
+                    color: colorNotifier.selectedColor,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SingleChildScrollView(

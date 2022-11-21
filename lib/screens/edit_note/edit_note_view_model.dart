@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 // import 'package:stacked/stacked.dart';
 
@@ -6,10 +7,10 @@ import '../../utilities/constants/constants.dart';
 import '../base_model.dart';
 
 class EditNoteViewModel extends BaseModel {
- 
-  EditNoteViewModel() {
-    loadNotecolorFromprefs();
-  }
+  // EditNoteViewModel() {
+  //   loadNotecolorFromprefs();
+  // }
+  Color? selectedColor;
 
   // Note? note;
   bool? isEdited;

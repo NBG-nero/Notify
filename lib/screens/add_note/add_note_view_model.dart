@@ -13,11 +13,12 @@ class AddNoteViewModel extends BaseModel {
   var uuid = const Uuid();
   bool? complete = false;
 
+
   Color? selectedColor;
 
-  AddNoteViewModel() {
-    loadNotecolorFromprefs();
-  }
+  // AddNoteViewModel() {
+  //   loadNotecolorFromprefs();
+  // }
 
   setComplete(value) {
     note?.complete = complete;
@@ -41,32 +42,32 @@ class AddNoteViewModel extends BaseModel {
     return note.id;
   }
 
-  @override
-  setColor(Color newColor) {
-    selectedColor = newColor;
+  // @override
+  // setColor(Color newColor) {
+  //   selectedColor = newColor;
 
-    notifyListeners();
-    saveNotecolorToprefs();
-    log(selectedColor.toString());
-  }
+  //   notifyListeners();
+  //   saveNotecolorToprefs();
+  //   log(selectedColor.toString());
+  // }
 
-  @override
-  saveNotecolorToprefs() async {
-    await initPrefs();
-    int? strSelected = selectedColor!.value;
+  // @override
+  // saveNotecolorToprefs() async {
+  //   await initPrefs();
+  //   int? strSelected = selectedColor!.value;
 
-    prefs?.setInt(colorR, strSelected);
-    log(strSelected.toString());
-  }
+  //   prefs?.setInt(colorR, strSelected);
+  //   log(strSelected.toString());
+  // }
 
-  @override
-  loadNotecolorFromprefs() async {
-    await initPrefs();
-    // String? strSelected = selectedColor.toString();
+  // @override
+  // loadNotecolorFromprefs() async {
+  //   await initPrefs();
+  //   // String? strSelected = selectedColor.toString();
 
-    strSelected = prefs?.getInt(colorR);
-    log(strSelected.toString());
-    setColor(Color(strSelected!));
-    notifyListeners();
-  }
+  //   strSelected = prefs?.getInt(colorR);
+  //   log(strSelected.toString());
+  //   setColor(Color(strSelected!));
+  //   notifyListeners();
+  // }
 }
