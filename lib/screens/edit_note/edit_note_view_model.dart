@@ -10,7 +10,7 @@ class EditNoteViewModel extends BaseModel {
   // EditNoteViewModel() {
   //   loadNotecolorFromprefs();
   // }
-  Color? selectedColor;
+  
 
   // Note? note;
   bool? isEdited;
@@ -35,7 +35,7 @@ class EditNoteViewModel extends BaseModel {
         isEdited: true,
         dateCreated: dateCreated,
         updatedDate: DateTime.now(),
-        noteColor: selectedColor);
+        noteColor: notifier?.selectedColor);
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(updateNote.id, updateNote);
     // log(id!);

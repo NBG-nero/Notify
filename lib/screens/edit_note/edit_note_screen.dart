@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../models/models.dart';
-import '../../providers/theme_notifier.dart';
 import '../../routes/router.gr.dart';
 import '../../utilities/constants/constants.dart';
 import '../../widgets/widgets.dart';
@@ -37,10 +36,10 @@ class _EditNotescreenState extends State<EditNotescreen> {
     return ViewModelBuilder<EditNoteViewModel>.reactive(
         viewModelBuilder: () => EditNoteViewModel(),
         onModelReady: (e) {
-          // e.setInitialised(true);
+          e.setInitialised(true);
           titleCtrl.text = widget.note!.title ?? " ";
           descCtrl.text = widget.note!.desc ?? "";
-          colorNotifier.selectedColor = widget.note!.noteColor;
+          e.notifier?.selectedColor = widget.note!.noteColor;
         },
         builder: (context, model, child) {
           final theme = Provider.of<ThemeNotifier>(context);
@@ -62,6 +61,28 @@ class _EditNotescreenState extends State<EditNotescreen> {
                             size: 25.sp)),
                   ),
                 ),
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                        onTap: () {
+                          // print(model.selectedColor.toString());
+                          // locator<BaseModel>().selectedColor;
+
+                          // print('color sheet');
+                          showModalBottomSheet(
+                              // backgroundColor: model.selectedColor,
+                              context: context,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(25))),
+                              builder: (context) {
+                                return const NbottomSheet();
+                              });
+                        },
+                        child: Icon(Icons.color_lens_outlined, size: 25.h)),
+                  )
+                ],
                 elevation: 10,
                 backgroundColor: NColors.primaryColor.withOpacity(0.5)),
             body: SingleChildScrollView(

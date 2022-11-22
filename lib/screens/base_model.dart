@@ -6,12 +6,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked.dart';
 
 import '../models/models.dart';
+import '../providers/providers.dart';
 
 class BaseModel extends BaseViewModel {
   SharedPreferences? prefs;
   // final String colorR = 'notecolor';
   // int? strSelected;
   Note? note;
+  ColorNotifier? notifier;
+
   // Color? selectedColor;
   // int? indexOfCurrentColor;
   // // void Function(Color)? callBackColorTapped;

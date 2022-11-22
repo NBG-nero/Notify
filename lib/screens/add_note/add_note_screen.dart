@@ -36,6 +36,8 @@ class _AddNotescreenState extends State<AddNotescreen>
 
   @override
   Widget build(BuildContext context) {
+    final colorNotifier = locator<ColorNotifier>();
+
     return ViewModelBuilder<AddNoteViewModel>.reactive(
         // viewModelBuilder: () => locator<AddNoteViewModel>(),
           viewModelBuilder: () => AddNoteViewModel(),
@@ -72,7 +74,7 @@ class _AddNotescreenState extends State<AddNotescreen>
                             // print(model.selectedColor.toString());
                             // locator<BaseModel>().selectedColor;
 
-                            print('color sheet');
+                            // print('color sheet');
                             showModalBottomSheet(
                                 // backgroundColor: model.selectedColor,
                                 context: context,

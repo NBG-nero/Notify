@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notify/providers/color_notifier.dart';
 
 import 'package:uuid/uuid.dart';
 
@@ -13,8 +14,7 @@ class AddNoteViewModel extends BaseModel {
   var uuid = const Uuid();
   bool? complete = false;
 
-
-  Color? selectedColor;
+  // Color? selectedColor;
 
   // AddNoteViewModel() {
   //   loadNotecolorFromprefs();
@@ -35,7 +35,7 @@ class AddNoteViewModel extends BaseModel {
         isEdited: false,
         dateCreated: DateTime.now(),
         updatedDate: DateTime.now(),
-        noteColor: selectedColor);
+        noteColor: notifier?.selectedColor);
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(note.id, note);
 

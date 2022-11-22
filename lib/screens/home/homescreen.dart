@@ -155,25 +155,7 @@ class _HomescreenState extends State<Homescreen> {
                                   ],
                                 ),
                               )
-                              // child: GridView.builder(
-                              //     gridDelegate:
-                              //         SliverGridDelegateWithFixedCrossAxisCount(
-                              //             crossAxisCount: 2,
-                              //             crossAxisSpacing: 1.w,
-                              //             mainAxisSpacing: 1.w),
-                              //     itemCount: model.notes.length,
-                              //     itemBuilder: ((context, index) {
-                              //       Note note = model.notes[index];
-                              //       return GridNotesCard(
-                              //         note: note,
-                              //         onDTap: () {
-                              //         },
-                              //         onVTap: () {
-                              //         },
-                              //         onETap: () {
-                              //         },
-                              //       );
-                              //     }),),
+                            
                               ),
                         )),
             ),
