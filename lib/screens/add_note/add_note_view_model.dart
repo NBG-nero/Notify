@@ -35,7 +35,7 @@ class AddNoteViewModel extends BaseModel {
         isEdited: false,
         dateCreated: DateTime.now(),
         updatedDate: DateTime.now(),
-        noteColor: notifier?.selectedColor);
+        noteColor: notifier.selectedColor);
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(note.id, note);
 

@@ -1,5 +1,7 @@
 // ignore_for_file: sized_box_for_whitespace
 
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +10,7 @@ import 'package:notify/screens/edit_note/edit_note_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../locator.dart';
 import '../../models/models.dart';
 import '../../routes/router.gr.dart';
 import '../../utilities/constants/constants.dart';
@@ -31,15 +34,19 @@ class _EditNotescreenState extends State<EditNotescreen> {
   TextEditingController descCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final colorNotifier = Provider.of<ColorNotifier>(context);
+    // final colorNotifier = locator<ColorNotifier>();
+    // final colorNotifier = Provider.of<ColorNotifier>(context);
 
     return ViewModelBuilder<EditNoteViewModel>.reactive(
         viewModelBuilder: () => EditNoteViewModel(),
         onModelReady: (e) {
           e.setInitialised(true);
+
           titleCtrl.text = widget.note!.title ?? " ";
           descCtrl.text = widget.note!.desc ?? "";
-          e.notifier?.selectedColor = widget.note!.noteColor;
+          e.notifier.selectedColor = widget.note!.noteColor;
+          log(e.notifier.selectedColor.toString());
+          // log(colorNotifier.selectedColor.toString());
         },
         builder: (context, model, child) {
           final theme = Provider.of<ThemeNotifier>(context);
@@ -89,7 +96,7 @@ class _EditNotescreenState extends State<EditNotescreen> {
               child: SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: Material(
-                    color: colorNotifier.selectedColor,
+                    color: model.notifier.selectedColor,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SingleChildScrollView(

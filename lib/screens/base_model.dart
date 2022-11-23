@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked.dart';
 
+import '../locator.dart';
 import '../models/models.dart';
 import '../providers/providers.dart';
 
@@ -13,8 +15,10 @@ class BaseModel extends BaseViewModel {
   // final String colorR = 'notecolor';
   // int? strSelected;
   Note? note;
-  ColorNotifier? notifier;
+  // ColorNotifier? notifier;
 
+  final notifier = locator<ColorNotifier>();
+  // Color? selected = locator<ColorNotifier>().selectedColor;
   // Color? selectedColor;
   // int? indexOfCurrentColor;
   // // void Function(Color)? callBackColorTapped;

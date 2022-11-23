@@ -19,9 +19,9 @@ class ColorNotifier extends ChangeNotifier {
     prefs = await SharedPreferences.getInstance();
   }
 
-  ColorNotifier() {
-    loadNotecolorFromprefs();
-  }
+  // ColorNotifier() {
+  //   loadNotecolorFromprefs();
+  // }
 
   saveNotecolorToprefs() async {
     await initPrefs();
@@ -53,9 +53,17 @@ class ColorNotifier extends ChangeNotifier {
     const Color(0xffe9eaee) // light gray
   ];
 
+
+
+  setSelectedColor(valColor) {
+    // colors[3] = valColor;
+    selectedColor = valColor;
+    saveNotecolorToprefs();
+    notifyListeners();
+  }
   setColor(Color newColor) {
     selectedColor = newColor;
-    saveNotecolorToprefs();
+    // saveNotecolorToprefs();
     notifyListeners();
     log(selectedColor.toString());
   }

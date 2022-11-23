@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 // import 'package:notify/widgets/custom_textfield.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../locator.dart';
 import '../../models/models.dart';
 import '../../providers/providers.dart';
 import '../../utilities/constants/constants.dart';
@@ -32,7 +33,7 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
 
   @override
   Widget build(BuildContext context) {
-    final colorNotifier = Provider.of<ColorNotifier>(context);
+    // final colorNotifier =locator<ColorNotifier>();
 
     return ViewModelBuilder<ViewNoteViewModel>.reactive(
         viewModelBuilder: () => ViewNoteViewModel(),
@@ -40,7 +41,7 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
           v.setInitialised(true);
           titleCtrl.text = widget.note!.title ?? " ";
           descCtrl.text = widget.note!.desc ?? "";
-          v.notifier?.selectedColor = widget.note!.noteColor;
+          v.notifier.selectedColor = widget.note!.noteColor;
         },
         builder: (context, model, child) {
           return Scaffold(
@@ -66,7 +67,7 @@ class _ViewNotescreenState extends State<ViewNotescreen> {
               child: SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: Material(
-                    color: colorNotifier.selectedColor,
+                    color: model.notifier.selectedColor,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SingleChildScrollView(

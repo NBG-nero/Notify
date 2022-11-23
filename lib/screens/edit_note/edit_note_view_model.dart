@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 // import 'package:stacked/stacked.dart';
 
 import '../../models/models.dart';
+import '../../providers/providers.dart';
 import '../../utilities/constants/constants.dart';
 import '../base_model.dart';
 
@@ -10,6 +11,7 @@ class EditNoteViewModel extends BaseModel {
   // EditNoteViewModel() {
   //   loadNotecolorFromprefs();
   // }
+
   
 
   // Note? note;
@@ -35,7 +37,7 @@ class EditNoteViewModel extends BaseModel {
         isEdited: true,
         dateCreated: dateCreated,
         updatedDate: DateTime.now(),
-        noteColor: notifier?.selectedColor);
+        noteColor: notifier.selectedColor);
     var hiveBox = Hive.box<Note>(noteBox);
     hiveBox.put(updateNote.id, updateNote);
     // log(id!);
