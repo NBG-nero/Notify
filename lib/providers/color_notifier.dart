@@ -25,9 +25,9 @@ class ColorNotifier extends ChangeNotifier {
 
   saveNotecolorToprefs() async {
     await initPrefs();
-    String? strSelected = selectedColor.toString();
-    prefs?.setString(colorR, strSelected);
-    log(strSelected);
+    strSelected = selectedColor.toString();
+    prefs?.setString(colorR, strSelected!);
+    log(strSelected!);
   }
 
   loadNotecolorFromprefs() async {

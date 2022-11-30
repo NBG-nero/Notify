@@ -4,6 +4,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notify/screens/home/home_screen_view_model.dart';
+
+import '../locator.dart';
 // import 'package:stacked/stacked.dart';
 
 // import '../screens/home/home_screen_view_model.dart';
@@ -33,6 +36,7 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
   Widget build(BuildContext context) {
     // var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
+    final model = locator<HomescreenViewModel>();
 
     // return
 
@@ -61,10 +65,8 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
               size: 25.h,
             ),
             onSelected: (selectedValue) async {
-              // widget.homeViewModel?.prefs?.setInt('selectedValue', selectedValue);
-
-              // selectedValue = model.selectedValue!;
-              switch (selectedValue) {
+           
+              switch (model.selectedValue) {
                 case 0:
                   // model.setFilter(0);
                   widget.onSortbyT!();

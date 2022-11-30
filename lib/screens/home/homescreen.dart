@@ -34,6 +34,7 @@ class _HomescreenState extends State<Homescreen> {
           h.setInitialised(true);
 
           h.getNotes();
+          
         },
         builder: (context, model, child) {
           return Scaffold(
@@ -154,9 +155,7 @@ class _HomescreenState extends State<Homescreen> {
                                     ],
                                   ],
                                 ),
-                              )
-                            
-                              ),
+                              )),
                         )),
             ),
             floatingActionButton: FloatingActionButton(

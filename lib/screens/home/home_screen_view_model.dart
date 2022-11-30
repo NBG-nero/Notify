@@ -13,7 +13,7 @@ import '../base_model.dart';
 class HomescreenViewModel extends BaseModel {
   HomescreenViewModel() {
     loadfromPrefs();
-    // loadfilterFromprefs();
+    loadfilterFromprefs();
   }
 
   final String views = 'noteviews';
@@ -22,8 +22,6 @@ class HomescreenViewModel extends BaseModel {
   bool switchView = false;
   final String filter = 'notesfilter';
   int selectedValue = 0;
-
- 
 
   setView(value) {
     switchView = value;
@@ -42,23 +40,23 @@ class HomescreenViewModel extends BaseModel {
     notifyListeners();
   }
 
-  // setFilter(value) {
-  //   selectedValue = value;
-  //   savefiltterToprefs();
-  //   notifyListeners();
-  // }
+  setFilter(value) {
+    selectedValue = value;
+    savefiltterToprefs();
+    notifyListeners();
+  }
 
-  // savefiltterToprefs() async {
-  //   await initPrefs();
-  //   prefs?.setInt(filter, selectedValue);
- 
-  // }
+  savefiltterToprefs() async {
+    await initPrefs();
+    prefs?.setInt(filter, selectedValue);
 
-  // loadfilterFromprefs() async {
-  //   await initPrefs();
-  //   selectedValue = prefs?.getInt(filter) ?? 0;
-  //   notifyListeners();
-  // }
+  }
+
+  loadfilterFromprefs() async {
+    await initPrefs();
+    selectedValue = prefs?.getInt(filter) ?? 0;
+    notifyListeners();
+  }
 
   getNotes() {
     var hiveBox = Hive.box<Note>(noteBox);
