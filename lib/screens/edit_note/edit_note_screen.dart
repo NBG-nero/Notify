@@ -44,8 +44,8 @@ class _EditNotescreenState extends State<EditNotescreen> {
 
           titleCtrl.text = widget.note!.title ?? " ";
           descCtrl.text = widget.note!.desc ?? "";
-          e.notifier.selectedColor = widget.note!.noteColor;
-          log(e.notifier.selectedColor.toString());
+          // e.notifier.selectedColor = widget.note!.noteColor;
+          // log(e.notifier.selectedColor.toString());
           // log(colorNotifier.selectedColor.toString());
         },
         builder: (context, model, child) {
@@ -76,7 +76,6 @@ class _EditNotescreenState extends State<EditNotescreen> {
                           // print(model.selectedColor.toString());
                           // locator<BaseModel>().selectedColor;
 
-                          // print('color sheet');
                           showModalBottomSheet(
                               // backgroundColor: model.selectedColor,
                               context: context,
@@ -86,6 +85,8 @@ class _EditNotescreenState extends State<EditNotescreen> {
                               builder: (context) {
                                 return const NbottomSheet();
                               });
+
+                          // print('color sheet');
                         },
                         child: Icon(Icons.color_lens_outlined, size: 25.h)),
                   )

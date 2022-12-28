@@ -61,7 +61,9 @@ class _NbottomSheetState extends State<NbottomSheet> {
                               onTap: () {
                                 // colorNotifier.setSelectedColor(color);
                                 colorNotifier.setColor(color!);
-                                log(colorNotifier.selectedColor.toString());
+                                setState(() {
+                                  // log(colorNotifier.selectedColor.toString());
+                                });
                               },
                               child: Padding(
                                 padding:
