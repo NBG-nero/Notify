@@ -43,7 +43,7 @@ class _GridNotesCardState extends State<GridNotesCard> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Material(
-          color: widget.note.noteColor,
+          color: widget.note.noteColor ,
           elevation: 30,
           child: Container(
               margin: const EdgeInsets.all(6),

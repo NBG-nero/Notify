@@ -44,6 +44,8 @@ class _EditNotescreenState extends State<EditNotescreen> {
 
           titleCtrl.text = widget.note!.title ?? " ";
           descCtrl.text = widget.note!.desc ?? "";
+          var newColor = Color( int.tryParse(e.notifier.strSelected! ) ?? 0);
+          widget.note!.noteColor = newColor;
           // e.notifier.selectedColor = widget.note!.noteColor;
           // log(e.notifier.selectedColor.toString());
           // log(colorNotifier.selectedColor.toString());
